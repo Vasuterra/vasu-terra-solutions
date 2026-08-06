@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vasu Terra Solutions | Geospatial Intelligence &amp; Environmental Consulting</title>
+<meta name="description" content="Vasu Terra Solutions provides GIS, Remote Sensing, Hydrogeology, Watershed Management, Environmental Analytics, AI-powered Geospatial Solutions and Site Suitability Analysis for governments, industries, NGOs and research organizations worldwide.">
+<meta name="keywords" content="GIS consulting, remote sensing, hydrogeology, watershed management, environmental consulting, site suitability analysis, groundwater mapping, geospatial intelligence, India GIS company">
+<meta property="og:title" content="Vasu Terra Solutions | Geospatial Intelligence for Sustainable Development">
+<meta property="og:description" content="Transforming Geospatial Intelligence into Sustainable Decisions.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#FAFCFA;
+  --bg-alt:#F1F5F1;
+  --panel:#FFFFFF;
+  --ink:#0B1F1C;
+  --ink-soft:#4B5C56;
+  --ink-faint:#8A968F;
+  --forest:#123C2E;
+  --forest-deep:#0A2A20;
+  --blue:#124560;
+  --blue-soft:#1D5B7A;
+  --gold:#B08D57;
+  --line:#DFE6E0;
+  --line-strong:#C9D3CB;
+  --shadow: 0 20px 60px -25px rgba(11,31,28,0.25);
+  --radius: 2px;
+  --wrap: 1180px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:'Fraunces',serif;
+  color:var(--forest-deep);
+  margin:0;
+  line-height:1.12;
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+ul{margin:0;padding:0;list-style:none;}
+button{font-family:inherit;cursor:pointer;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px;}
+@media (max-width:640px){.wrap{padding:0 20px;}}
+
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:22px;height:1px;
+  background:var(--gold);
+  display:inline-block;
+}
+
+section{position:relative;}
+.section-pad{padding:112px 0;}
+@media (max-width:900px){.section-pad{padding:76px 0;}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease), transform .9s var(--ease);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 30px;
+  font-size:14px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;
+  border:1px solid transparent;
+  border-radius:var(--radius);
+  cursor:pointer;
+  transition:all .35s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{background:var(--gold);color:var(--forest-deep);}
+.btn-primary:hover{background:#c7a066;transform:translateY(-2px);box-shadow:0 14px 28px -12px rgba(176,141,87,0.55);}
+.btn-outline-light{background:transparent;border-color:rgba(255,255,255,0.5);color:#fff;}
+.btn-outline-light:hover{background:rgba(255,255,255,0.12);border-color:#fff;}
+.btn-outline-dark{background:transparent;border-color:var(--forest);color:var(--forest);}
+.btn-outline-dark:hover{background:var(--forest);color:#fff;}
+.btn-block{width:100%;}
+
+/* ============ HEADER ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(250,252,250,0.86);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease, background .3s ease;
+}
+header.scrolled{border-bottom-color:var(--line);}
+.nav-inner{
+  max-width:var(--wrap);margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:82px;
+}
+@media (max-width:640px){.nav-inner{padding:0 20px;height:70px;}}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:34px;height:34px;flex:none;}
+.brand-text{display:flex;flex-direction:column;line-height:1.05;}
+.brand-name{font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;letter-spacing:0.01em;color:var(--forest-deep);}
+.brand-sub{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px;}
+
+nav.primary-nav{display:flex;align-items:center;gap:36px;}
+nav.primary-nav a{
+  font-size:13.5px;font-weight:500;color:var(--ink-soft);
+  position:relative;padding:4px 0;
+  transition:color .25s ease;
+}
+nav.primary-nav a::after{
+  content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);
+  transition:width .3s var(--ease);
+}
+nav.primary-nav a:hover{color:var(--forest-deep);}
+nav.primary-nav a:hover::after{width:100%;}
+.nav-cta{display:flex;align-items:center;gap:22px;}
+.nav-cta .btn{padding:12px 22px;font-size:12.5px;}
+@media (max-width:960px){nav.primary-nav{display:none;}}
+
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;}
+.menu-toggle span{width:22px;height:1.5px;background:var(--forest-deep);display:block;}
+@media (max-width:960px){.menu-toggle{display:flex;}.nav-cta .btn{display:none;}}
+
+.mobile-nav{
+  display:none;position:fixed;inset:70px 0 0 0;background:var(--bg);z-index:999;
+  padding:36px 24px; overflow-y:auto;
+}
+.mobile-nav.open{display:block;}
+.mobile-nav a{display:block;font-family:'Fraunces',serif;font-size:24px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--forest-deep);}
+.mobile-nav .btn{margin-top:24px;}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(160deg,#0A2A20 0%, #123C2E 46%, #124560 100%);
+  overflow:hidden;padding-top:82px;
+}
+.hero-grid-overlay{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.15) 80%);
+}
+.hero-contours{position:absolute;inset:0;opacity:0.5;}
+.hero-contours svg{width:100%;height:100%;}
+.hero-scanline{
+  position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(176,141,87,0.85), transparent);
+  animation:scan 7s linear infinite;
+}
+@keyframes scan{0%{top:8%;opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{top:92%;opacity:0;}}
+
+.hero-inner{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;padding:120px 32px 90px;width:100%;}
+@media (max-width:640px){.hero-inner{padding:90px 20px 70px;}}
+.hero-coord{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;
+  color:rgba(255,255,255,0.7);text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;margin-bottom:30px;
+}
+.hero-coord::before{content:"";width:8px;height:8px;border:1px solid var(--gold);border-radius:50%;box-shadow:0 0 0 4px rgba(176,141,87,0.18);}
+h1.hero-headline{
+  font-size:clamp(38px, 5.4vw, 68px);
+  color:#fff;max-width:920px;font-weight:600;
+}
+.hero-sub{
+  margin-top:28px;max-width:640px;font-size:18px;line-height:1.7;
+  color:rgba(255,255,255,0.82);
+}
+.hero-actions{display:flex;gap:18px;flex-wrap:wrap;margin-top:44px;}
+.hero-stats{
+  margin-top:88px;display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(255,255,255,0.16);padding-top:32px;gap:24px;
+}
+.hero-stats .stat-num{font-family:'Fraunces',serif;font-size:28px;color:#fff;font-weight:600;}
+.hero-stats .stat-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:6px;}
+@media (max-width:800px){.hero-stats{grid-template-columns:repeat(2,1fr);row-gap:28px;}}
+
+/* ============ CONTOUR DIVIDER ============ */
+.contour-divider{height:64px;overflow:hidden;position:relative;}
+.contour-divider svg{width:100%;height:100%;display:block;}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:80px;align-items:center;}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:52px;}}
+.about-copy p{color:var(--ink-soft);font-size:16.5px;margin-bottom:20px;}
+.about-copy p:last-child{margin-bottom:0;}
+.about-visual{position:relative;background:var(--forest-deep);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);padding:28px 28px 0;display:flex;flex-direction:column;}
+.about-visual img{width:100%;height:auto;background:#fff;}
+.about-visual-caption{padding:16px 4px 20px;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+.about-lead{font-family:'Fraunces',serif;font-size:23px;color:var(--forest-deep);font-weight:500;margin-bottom:26px;line-height:1.4;}
+
+.mini-list{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;}
+.mini-list li{display:flex;align-items:baseline;gap:10px;font-size:14.5px;color:var(--ink-soft);}
+.mini-list li::before{content:"";width:5px;height:5px;background:var(--gold);flex:none;transform:translateY(-3px);}
+
+/* ============ SECTION HEADERS ============ */
+.section-head{max-width:640px;margin-bottom:64px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head h2{font-size:clamp(28px,3.4vw,42px);}
+.section-head .desc{margin-top:20px;color:var(--ink-soft);font-size:16px;}
+
+.bg-alt{background:var(--bg-alt);}
+
+/* ============ SERVICES ACCORDION ============ */
+.services-list{border-top:1px solid var(--line-strong);}
+.service-cat{border-bottom:1px solid var(--line-strong);}
+.service-cat-head{
+  width:100%;background:none;border:none;text-align:left;
+  display:flex;align-items:center;gap:22px;padding:30px 6px;
+}
+.service-cat-head:hover .cat-title{color:var(--blue);}
+.cat-icon{width:44px;height:44px;flex:none;color:var(--forest);}
+.cat-icon svg{width:100%;height:100%;}
+.cat-text{flex:1;display:flex;flex-direction:column;gap:4px;}
+.cat-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);letter-spacing:0.1em;}
+.cat-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--forest-deep);transition:color .25s ease;}
+.cat-plus{width:22px;height:22px;flex:none;position:relative;}
+.cat-plus::before,.cat-plus::after{content:"";position:absolute;background:var(--forest);transition:transform .3s var(--ease);}
+.cat-plus::before{left:0;top:50%;width:100%;height:1.5px;transform:translateY(-50%);}
+.cat-plus::after{top:0;left:50%;width:1.5px;height:100%;transform:translateX(-50%);}
+.service-cat.open .cat-plus::after{transform:translateX(-50%) rotate(90deg);opacity:0;}
+
+.service-cat-body{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);}
+.service-cat.open .service-cat-body{max-height:600px;}
+.service-tags{display:flex;flex-wrap:wrap;gap:10px;padding:6px 6px 34px 66px;}
+@media (max-width:640px){.service-tags{padding-left:6px;}}
+.service-tags span{
+  font-size:13.5px;color:var(--ink-soft);
+  padding:9px 16px;border:1px solid var(--line-strong);border-radius:20px;
+  background:var(--panel);
+}
+
+/* ============ INDUSTRIES ============ */
+.industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong);}
+@media (max-width:900px){.industry-grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:640px){.industry-grid{grid-template-columns:repeat(2,1fr);}}
+.industry-card{
+  background:var(--panel);padding:36px 24px;display:flex;flex-direction:column;gap:18px;
+  transition:background .3s ease;
+}
+.industry-card:hover{background:var(--bg-alt);}
+.industry-card .ic{width:30px;height:30px;color:var(--blue);}
+.industry-card .ic svg{width:100%;height:100%;}
+.industry-card span{font-size:14px;color:var(--ink-soft);font-weight:500;line-height:1.4;}
+
+/* ============ WHY CHOOSE ============ */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);}
+@media (max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.why-grid{grid-template-columns:1fr;}}
+.why-card{background:var(--forest-deep);color:#fff;padding:40px 32px;min-height:200px;display:flex;flex-direction:column;gap:16px;justify-content:flex-end;position:relative;}
+.why-card .wi{width:26px;height:26px;color:var(--gold);}
+.why-card .wi svg{width:100%;height:100%;}
+.why-card h3{color:#fff;font-size:18px;font-weight:600;}
+.why-card p{color:rgba(255,255,255,0.62);font-size:13.5px;margin-top:4px;}
+
+/* ============ DELIVERABLES ============ */
+.deliv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+@media (max-width:900px){.deliv-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.deliv-grid{grid-template-columns:1fr;}}
+.deliv-card{background:var(--panel);border:1px solid var(--line-strong);overflow:hidden;transition:box-shadow .3s ease, transform .3s ease;}
+.deliv-card:hover{box-shadow:var(--shadow);transform:translateY(-3px);}
+.deliv-thumb{aspect-ratio:4/3;position:relative;overflow:hidden;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;}
+.deliv-thumb img{width:100%;height:100%;object-fit:contain;display:block;}
+.deliv-label{padding:16px 18px;font-size:13.5px;font-weight:500;color:var(--forest-deep);border-top:1px solid var(--line-strong);}
+
+/* ============ PROCESS ============ */
+.process-list{border-top:1px solid var(--line-strong);}
+.process-item{display:grid;grid-template-columns:100px 1fr;gap:32px;padding:34px 0;border-bottom:1px solid var(--line-strong);align-items:start;}
+.process-num{font-family:'Fraunces',serif;font-size:38px;color:var(--line-strong);font-weight:600;}
+.process-item.reveal.is-visible .process-num{color:var(--gold);transition:color .6s ease .2s;}
+.process-body h3{font-size:19px;margin-bottom:8px;}
+.process-body p{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+@media (max-width:640px){.process-item{grid-template-columns:1fr;gap:8px;}}
+
+/* ============ CTA BANNER ============ */
+.cta-banner{
+  background:linear-gradient(120deg,#124560, #123C2E 70%);
+  color:#fff;padding:96px 0;text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner h2{color:#fff;font-size:clamp(26px,3.6vw,40px);max-width:680px;margin:0 auto;}
+.cta-banner p{color:rgba(255,255,255,0.78);max-width:600px;margin:22px auto 0;font-size:16px;}
+.cta-banner .btn{margin-top:38px;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:64px;}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr;gap:52px;}}
+.field{margin-bottom:20px;}
+.field label{display:block;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;font-family:'IBM Plex Mono',monospace;}
+.field input,.field select,.field textarea{
+  width:100%;border:1px solid var(--line-strong);background:var(--panel);
+  padding:14px 16px;font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink);
+  border-radius:var(--radius);transition:border-color .25s ease;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media (max-width:520px){.field-row{grid-template-columns:1fr;}}
+.form-note{font-size:12.5px;color:var(--ink-faint);margin-top:16px;}
+
+.contact-info-card{background:var(--forest-deep);color:#fff;padding:44px 36px;}
+.contact-info-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.14);}
+.contact-info-row:last-of-type{border-bottom:none;}
+.contact-info-row .ci{width:20px;height:20px;flex:none;color:var(--gold);margin-top:2px;}
+.contact-info-row .ci svg{width:100%;height:100%;}
+.contact-info-row .cl-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px;}
+.contact-info-row .cl-value{font-size:14.5px;color:#fff;}
+.linkedin-btn{margin-top:24px;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,0.35);padding:12px 20px;}
+.linkedin-btn:hover{background:rgba(255,255,255,0.1);}
+
+/* ============ FOOTER ============ */
+footer{background:var(--forest-deep);color:rgba(255,255,255,0.65);padding:80px 0 32px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,0.12);}
+@media (max-width:800px){.footer-grid{grid-template-columns:1fr 1fr;row-gap:40px;}}
+.footer-brand .brand-name{color:#fff;}
+.footer-brand p{margin-top:18px;font-size:13.5px;line-height:1.7;max-width:280px;color:rgba(255,255,255,0.55);}
+.footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:20px;font-weight:500;}
+.footer-col li{margin-bottom:12px;}
+.footer-col a{font-size:14px;color:rgba(255,255,255,0.72);transition:color .2s ease;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;font-size:12.5px;flex-wrap:wrap;gap:12px;}
+.footer-bottom .legal{display:flex;gap:24px;}
+
+/* Back to top / scroll cue */
+.scroll-cue{position:absolute;bottom:36px;left:32px;display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.55);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;}
+.scroll-cue .line{width:1px;height:34px;background:rgba(255,255,255,0.35);position:relative;overflow:hidden;}
+.scroll-cue .line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--gold);animation:scrolldrop 2.2s ease-in-out infinite;}
+@keyframes scrolldrop{0%{top:-100%;}50%{top:0%;}100%{top:100%;}}
+@media (max-width:640px){.scroll-cue{display:none;}}
+
+/* Focus visibility */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--blue);outline-offset:3px;
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="site-header">
+  <div class="nav-inner">
+    <a href="#top" class="brand" aria-label="Vasu Terra Solutions home">
+      <span class="brand-mark">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="19" stroke="#123C2E" stroke-width="1.2"/>
+          <path d="M4 24C9 20 14 27 20 22C26 17 31 24 36 19" stroke="#124560" stroke-width="1.3"/>
+          <path d="M2 17C8 13 15 19 20 15C25 11 32 16 38 12" stroke="#B08D57" stroke-width="1.3"/>
+          <circle cx="20" cy="20" r="2.4" fill="#123C2E"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">Vasu Terra Solutions</span>
+        <span class="brand-sub">Where Earth Observation Meets Innovation</span>
+      </span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#industries">Industries</a>
+      <a href="#why">Why Us</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-outline-dark">Request a Consultation</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#industries">Industries</a>
+  <a href="#why">Why Us</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary btn-block">Request a Consultation</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-contours" aria-hidden="true">
+    <svg viewBox="0 0 1400 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50 780 C 250 700, 450 850, 750 760 S 1200 700, 1450 790" stroke="rgba(255,255,255,0.10)" stroke-width="1.5" fill="none"/>
+      <path d="M-50 680 C 250 600, 450 750, 750 660 S 1200 600, 1450 690" stroke="rgba(255,255,255,0.10)" stroke-width="1.5" fill="none"/>
+      <path d="M-50 580 C 250 500, 450 650, 750 560 S 1200 500, 1450 590" stroke="rgba(255,255,255,0.09)" stroke-width="1.5" fill="none"/>
+      <path d="M-50 480 C 250 400, 450 550, 750 460 S 1200 400, 1450 490" stroke="rgba(176,141,87,0.28)" stroke-width="1.5" fill="none"/>
+      <path d="M-50 380 C 250 300, 450 450, 750 360 S 1200 300, 1450 390" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" fill="none"/>
+      <path d="M-50 280 C 250 200, 450 350, 750 260 S 1200 200, 1450 290" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="hero-scanline"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-coord mono">19°59′51.0″N 73°47′23.3″E — Mumbai, Maharashtra, India · Serving clients worldwide</div>
+    <h1 class="hero-headline">Geospatial Intelligence for Sustainable Development</h1>
+    <p class="hero-sub">We're building our footing in geospatial and environmental consulting — helping the organisations we work with put GIS, Remote Sensing, Hydrogeology, Artificial Intelligence, and Environmental Analytics to use in decisions about land, water, and infrastructure.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+      <a href="#services" class="btn btn-outline-light">Explore Our Services</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Service Domains</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Core Practice Areas</div></div>
+      <div class="stat"><div class="stat-num">13</div><div class="stat-label">Industries Served</div></div>
+      <div class="stat"><div class="stat-num">Global</div><div class="stat-label">Project Footprint</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<div class="contour-divider" aria-hidden="true">
+  <svg viewBox="0 0 1400 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 40 C 200 10, 400 60, 700 30 S 1100 10, 1400 40 L 1400 64 L 0 64 Z" fill="#FAFCFA"/>
+  </svg>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="section-pad" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">About the Firm</span>
+        <p class="about-lead">Vasu Terra Solutions is a geospatial consulting firm specializing in GIS, Remote Sensing, Soil &amp; Water Conservation, Hydrogeology, Environmental Planning, Watershed Management, and AI-driven Spatial Analytics.</p>
+        <p>Our mission is to transform spatial data into actionable insights that support sustainable development, environmental conservation, infrastructure planning, and water resource management.</p>
+        <p>We're working to build our footing across government bodies, engineering firms, research institutions, industry, renewable energy companies, and NGOs — one project at a time, combining scientific rigour with modern geospatial technology.</p>
+        <ul class="mini-list">
+          <li>Groundwater &amp; Hydrogeology</li>
+          <li>Remote Sensing &amp; GIS</li>
+          <li>Environmental Consulting</li>
+          <li>Site Suitability Analysis</li>
+          <li>Watershed Management</li>
+          <li>AI-Powered Spatial Analytics</li>
+        </ul>
+      </div>
+      <div class="about-visual reveal">
+        <img src="assets/study-area-location-map.jpg" alt="Study area location map showing project districts within India and Madhya Pradesh" loading="lazy">
+        <div class="about-visual-caption mono">Sample Study Area — District-Level Delineation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section-pad bg-alt" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">What We Do</span>
+      <h2>Our Services</h2>
+      <p class="desc">Eight practice areas covering the full lifecycle of geospatial and environmental decision-making — from raw satellite data to field-ready recommendations.</p>
+    </div>
+
+    <div class="services-list reveal" id="servicesAccordion">
+      <!-- Category 1 -->
+      <div class="service-cat open">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 3C12 3 6 10 6 14.5C6 17.5 8.7 20 12 20C15.3 20 18 17.5 18 14.5C18 10 12 3 12 3Z"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">01 / 08</span><span class="cat-title">Water Resources &amp; Hydrogeology</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Groundwater Potential Zone Mapping</span><span>Aquifer Assessment</span><span>Artificial Recharge Planning</span><span>Watershed Delineation</span><span>Watershed Prioritization</span><span>Hydrological Modelling</span><span>River Basin Analysis</span><span>Runoff Analysis</span><span>Water Resource Planning</span>
+          </div>
+        </div>
+      </div>
+      <!-- Category 2 -->
+      <div class="service-cat">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="1"/><path d="M3 9h18M8 4v13M15 9v8"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">02 / 08</span><span class="cat-title">GIS &amp; Remote Sensing</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Land Use Land Cover (LULC) Mapping</span><span>Satellite Image Processing</span><span>Change Detection Analysis</span><span>DEM Processing</span><span>Slope Analysis</span><span>Contour Mapping</span><span>Lineament Mapping</span><span>Drainage Density Analysis</span><span>Morphometric Analysis</span><span>Terrain Analysis</span><span>Spatial Database Development</span><span>Web GIS Solutions</span>
+          </div>
+        </div>
+      </div>
+      <!-- Category 3 -->
+      <div class="service-cat">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 21C7 17 4 13.5 4 9.5C4 5.9 7.6 3 12 3C16.4 3 20 5.9 20 9.5C20 13.5 17 17 12 21Z"/><circle cx="12" cy="9.5" r="2.6"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">03 / 08</span><span class="cat-title">Environmental Consulting</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Environmental Impact Assessment Support</span><span>Flood Hazard Mapping</span><span>Drought Assessment</span><span>Climate Risk Assessment</span><span>Carbon Stock Assessment</span><span>Wetland Mapping</span><span>Forest Monitoring</span><span>Land Capability Assessment</span><span>Environmental Monitoring</span>
+          </div>
+        </div>
+      </div>
+      <!-- Category 4 -->
+      <div class="service-cat">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.8" fill="currentColor"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">04 / 08</span><span class="cat-title">Site Suitability Analysis</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Solar Power Plant Site Selection</span><span>Wind Farm Site Selection</span><span>Industrial Site Selection</span><span>Hospital Site Selection</span><span>School Site Selection</span><span>Landfill Suitability</span><span>Rainwater Harvesting Planning</span><span>Dam &amp; Reservoir Planning</span><span>Infrastructure Planning</span><span>Urban Expansion Analysis</span>
+          </div>
+        </div>
+      </div>
+      <!-- Category 5 -->
+      <div class="service-cat">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 20C4 20 5 10 12 10C19 10 20 20 20 20"/><path d="M12 10V3"/><path d="M9 6l3-3 3 3"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">05 / 08</span><span class="cat-title">Agriculture &amp; Soil Analytics</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Soil Erosion Modelling</span><span>Soil Moisture Mapping</span><span>Precision Agriculture</span><span>Crop Suitability Analysis</span><span>Irrigation Planning</span><span>Nutrient Mapping</span><span>Land Productivity Assessment</span>
+          </div>
+        </div>
+      </div>
+      <!-- Category 6 -->
+      <div class="service-cat">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 21h20L12 2z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.6" fill="currentColor"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">06 / 08</span><span class="cat-title">Disaster Risk Management</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Flood Susceptibility Mapping</span><span>Landslide Susceptibility Mapping</span><span>Drought Monitoring</span><span>Disaster Vulnerability Assessment</span><span>Climate Adaptation Planning</span>
+          </div>
+        </div>
+      </div>
+      <!-- Category 7 -->
+      <div class="service-cat">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3.4"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3 5.6 5.6"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">07 / 08</span><span class="cat-title">AI &amp; Geospatial Intelligence</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Machine Learning for Groundwater Prediction</span><span>AI-based Flood Prediction</span><span>Predictive Spatial Modelling</span><span>Spatial Data Analytics</span><span>Decision Support Systems</span><span>GIS Dashboards</span>
+          </div>
+        </div>
+      </div>
+      <!-- Category 8 -->
+      <div class="service-cat">
+        <button class="service-cat-head">
+          <span class="cat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+          <span class="cat-text"><span class="cat-num mono">08 / 08</span><span class="cat-title">Infrastructure &amp; Urban Planning</span></span>
+          <span class="cat-plus"></span>
+        </button>
+        <div class="service-cat-body">
+          <div class="service-tags">
+            <span>Infrastructure Planning</span><span>Urban Expansion Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contour-divider" aria-hidden="true">
+  <svg viewBox="0 0 1400 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 24 C 200 54, 400 4, 700 34 S 1100 54, 1400 24 L 1400 0 L 0 0 Z" fill="#F1F5F1"/>
+  </svg>
+</div>
+
+<!-- ============ INDUSTRIES ============ -->
+<section class="section-pad" id="industries">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Who We Serve</span>
+      <h2>Industries We Serve</h2>
+      <p class="desc">From ministries to mining companies, our geospatial models are built to withstand technical review and field verification alike.</p>
+    </div>
+    <div class="industry-grid reveal">
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg></span><span>Government Departments</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2c3 3 5 6 5 9a5 5 0 1 1-10 0c0-3 2-6 5-9Z"/></svg></span><span>Water Resource Authorities</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20C4 20 5 10 12 10C19 10 20 20 20 20"/></svg></span><span>Agriculture Departments</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v6M12 3l6 4M12 3 6 7M4 20h16M6 20l6-9 6 9"/></svg></span><span>Renewable Energy Companies</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span><span>Environmental Consulting Firms</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V9l4-3 4 3v12M11 21V6l4-3 4 3v15"/></svg></span><span>Mining Companies</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="13"/><path d="M8 8V5h8v3M12 12v5"/></svg></span><span>Engineering &amp; Infrastructure</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="10" width="16" height="10"/><path d="M9 10V6h6v4M12 3v3"/></svg></span><span>Urban Development Authorities</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M6 21V9l6-5 6 5v12M10 21v-6h4v6"/></svg></span><span>Smart City Projects</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6M17 8a3 3 0 1 1 4 2.8M22 20c0-2.5-1.7-4.5-4-5.5"/></svg></span><span>NGOs</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3v6L4 20h16L15 9V3"/><path d="M9 3h6"/></svg></span><span>Research Institutions</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></span><span>Universities</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M2.5 9h19M2.5 15h19M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span><span>International Organizations</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="section-pad bg-alt" id="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Edge</span>
+      <h2>Why Choose Vasu Terra Solutions</h2>
+      <p class="desc">We aim for deliverables that hold up to technical review and remain useful once a project moves from planning into implementation.</p>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span><h3>Scientific &amp; Research-Based Approach</h3><p>Every model is grounded in peer-reviewed method and field-validated data.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4Z"/></svg></span><h3>PhD-Level Expertise</h3><p>Senior scientists with doctoral training lead every engagement.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="13" rx="1"/><path d="M8 4v13M3 9h18"/></svg></span><h3>Advanced GIS &amp; Remote Sensing</h3><p>Enterprise-grade tools, satellite archives, and processing pipelines.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3.4"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3"/></svg></span><h3>AI-Driven Spatial Analytics</h3><p>Machine learning models tuned for prediction, not just visualization.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19h16M6 19V9l4-3 4 3v10M14 19v-6h4v6"/></svg></span><h3>Accurate Decision Support</h3><p>Outputs designed to plug directly into planning and approval workflows.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21C7 17 4 13.5 4 9.5C4 5.9 7.6 3 12 3C16.4 3 20 5.9 20 9.5C20 13.5 17 17 12 21Z"/></svg></span><h3>Sustainable Development Focus</h3><p>Environmental integrity is a design constraint, not an afterthought.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z"/><path d="M12 8v4l3 2"/></svg></span><h3>Customized Consulting Services</h3><p>Scopes built around your terrain, timeline, and reporting standards.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M2.5 9h19M2.5 15h19M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span><h3>International Standards</h3><p>Deliverables aligned to global mapping and reporting conventions.</p></div>
+      <div class="why-card"><span class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12l4 4 10-10"/></svg></span><h3>Reliable Project Delivery</h3><p>Clear milestones, transparent QA, and delivery you can plan around.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURED DELIVERABLES ============ -->
+<section class="section-pad" id="deliverables">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Capabilities</span>
+      <h2>What We Can Do</h2>
+      <p class="desc">Actual map outputs from our work — the kind of products a project with us ends up with.</p>
+    </div>
+    <div class="deliv-grid reveal">
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/lulc-map.jpg" alt="Land Use Land Cover map of a river basin" loading="lazy"></div><div class="deliv-label">Land Use Land Cover Mapping</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/fcc-satellite.jpg" alt="False colour composite satellite image of a watershed" loading="lazy"></div><div class="deliv-label">Satellite Image Processing (FCC)</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/dem-map.jpg" alt="Digital elevation model of a river basin" loading="lazy"></div><div class="deliv-label">Digital Elevation Modelling</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/slope-map.jpg" alt="Slope percentage classification map" loading="lazy"></div><div class="deliv-label">Slope Analysis</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/lineament-map.jpg" alt="Geological lineament map of a study area" loading="lazy"></div><div class="deliv-label">Lineament Mapping</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/stream-order-map.jpg" alt="Stream order map showing drainage network" loading="lazy"></div><div class="deliv-label">Stream Order &amp; Morphometric Analysis</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/drainage-density-map.jpg" alt="Drainage density classification map" loading="lazy"></div><div class="deliv-label">Drainage Density Mapping</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/groundwater-recharge-zone-map.jpg" alt="Groundwater recharge zone map" loading="lazy"></div><div class="deliv-label">Groundwater Recharge Zone Mapping</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/groundwater-critical-areas-map.jpg" alt="Groundwater critical area classification map" loading="lazy"></div><div class="deliv-label">Groundwater Criticality Assessment</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/groundwater-validation-map.jpg" alt="Groundwater potential zone validation map" loading="lazy"></div><div class="deliv-label">Groundwater Potential Validation</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/well-locations-map.jpg" alt="Well locations map from field survey" loading="lazy"></div><div class="deliv-label">Well Inventory &amp; Field Mapping</div></div>
+      <div class="deliv-card"><div class="deliv-thumb"><img src="assets/site-selection-checkdams.jpg" alt="Site suitability map for check dam locations" loading="lazy"></div><div class="deliv-label">Site Suitability — Check Dam Selection</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="contour-divider" aria-hidden="true">
+  <svg viewBox="0 0 1400 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 40 C 200 10, 400 60, 700 30 S 1100 10, 1400 40 L 1400 64 L 0 64 Z" fill="#F1F5F1"/>
+  </svg>
+</div>
+
+<!-- ============ PROCESS ============ -->
+<section class="section-pad bg-alt" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">How We Work</span>
+      <h2>Our Process</h2>
+      <p class="desc">A fixed sequence, refined across projects, that takes a brief from first call to field-ready recommendation.</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item reveal">
+        <div class="process-num mono">01</div>
+        <div class="process-body"><h3>Project Consultation</h3><p>We scope the technical problem, study area, deliverables, and success criteria with your team.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num mono">02</div>
+        <div class="process-body"><h3>Data Collection</h3><p>Satellite imagery, field survey data, DEMs, and secondary records are compiled and quality-checked.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num mono">03</div>
+        <div class="process-body"><h3>GIS &amp; Remote Sensing Analysis</h3><p>Layers are processed, classified, and cross-validated against ground truth.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num mono">04</div>
+        <div class="process-body"><h3>Spatial Modelling</h3><p>Hydrological, statistical, or machine-learning models are built and calibrated for the study area.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num mono">05</div>
+        <div class="process-body"><h3>Technical Report Preparation</h3><p>Findings are documented to the standard your reviewers and regulators expect.</p></div>
+      </div>
+      <div class="process-item reveal">
+        <div class="process-num mono">06</div>
+        <div class="process-body"><h3>Decision Support &amp; Recommendations</h3><p>We hand off maps, dashboards, and recommendations ready to act on.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="cta-banner">
+  <div class="wrap">
+    <span class="eyebrow" style="justify-content:center;color:#B08D57;">Get Started</span>
+    <h2>Need Reliable Geospatial Solutions?</h2>
+    <p>Partner with Vasu Terra Solutions for advanced GIS, Remote Sensing, Hydrogeology, Watershed Management, Environmental Consulting, and AI-powered spatial intelligence.</p>
+    <a href="#contact" class="btn btn-primary">Request a Proposal</a>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section-pad" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Start a Conversation</h2>
+      <p class="desc">Tell us about your study area and objectives — we'll respond with a scoped approach within two business days.</p>
+    </div>
+
+    <div class="contact-grid">
+      <form class="contact-form reveal" id="inquiryForm">
+        <div class="field-row">
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" required placeholder="Your full name"></div>
+          <div class="field"><label for="f-org">Organization</label><input id="f-org" name="organization" type="text" required placeholder="Company / agency"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-country">Country</label><input id="f-country" name="country" type="text" required placeholder="Country"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required placeholder="you@organization.com"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="f-phone">Phone Number</label><input id="f-phone" name="phone" type="tel" placeholder="+xx xxxxxxxxxx"></div>
+          <div class="field">
+            <label for="f-service">Service Required</label>
+            <select id="f-service" name="service" required>
+              <option value="" selected disabled>Select a service area</option>
+              <option>Water Resources &amp; Hydrogeology</option>
+              <option>GIS &amp; Remote Sensing</option>
+              <option>Environmental Consulting</option>
+              <option>Site Suitability Analysis</option>
+              <option>Agriculture &amp; Soil Analytics</option>
+              <option>Disaster Risk Management</option>
+              <option>AI &amp; Geospatial Intelligence</option>
+              <option>Infrastructure &amp; Urban Planning</option>
+              <option>Other / Not Sure Yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" rows="5" required placeholder="Tell us about your project, study area, and timeline"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Send Inquiry</button>
+        <p class="form-note" id="formNote">This form is a static demo — connect it to your email service or CRM to receive submissions.</p>
+      </form>
+
+      <div class="contact-info reveal">
+        <div class="contact-info-card">
+          <div class="contact-info-row">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg></span>
+            <div><div class="cl-label">Email</div><div class="cl-value">vasuterrasolutions@gmail.com</div></div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg></span>
+            <div><div class="cl-label">Phone</div><div class="cl-value">+91-8149423884</div></div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+            <div><div class="cl-label">Office</div><div class="cl-value">Mumbai, Maharashtra, India</div></div>
+          </div>
+          <div class="contact-info-row">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 21v-8a3 3 0 0 1 6 0M16 13a3 3 0 0 1 6 0v8h-4v-6"/></svg></span>
+            <div><div class="cl-label">LinkedIn</div><div class="cl-value">linkedin.com/company/vasu-terra-solutions</div></div>
+          </div>
+
+          <a href="#" class="linkedin-btn">Connect on LinkedIn &nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name">Vasu Terra Solutions</span>
+        <p>Transforming Geospatial Intelligence into Sustainable Decisions. GIS, Remote Sensing, Hydrogeology and Environmental Consulting for clients worldwide.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#industries">Industries</a></li><li><a href="#contact">Contact</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Practice Areas</h4>
+        <ul><li><a href="#services">Water &amp; Hydrogeology</a></li><li><a href="#services">GIS &amp; Remote Sensing</a></li><li><a href="#services">Environmental Consulting</a></li><li><a href="#services">Site Suitability</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="yearNow">2026</span> Vasu Terra Solutions. All rights reserved.</span>
+      <span class="legal mono">19.9975°N · 73.7898°E</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Header scroll state
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 12);
+}, {passive:true});
+
+// Mobile nav
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav = document.getElementById('mobileNav');
+menuToggle.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', open);
+});
+mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileNav.classList.remove('open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+}));
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.14});
+revealEls.forEach(el => io.observe(el));
+
+// Services accordion
+document.querySelectorAll('.service-cat-head').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cat = btn.closest('.service-cat');
+    const wasOpen = cat.classList.contains('open');
+    document.querySelectorAll('.service-cat').forEach(c => c.classList.remove('open'));
+    if (!wasOpen) cat.classList.add('open');
+  });
+});
+
+// Contact form (static demo)
+const form = document.getElementById('inquiryForm');
+const submitBtn = document.getElementById('submitBtn');
+const formNote = document.getElementById('formNote');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  submitBtn.textContent = 'Inquiry Received';
+  formNote.textContent = 'Thank you — this is a static demo form. Connect it to your email service, CRM, or backend to receive live submissions.';
+  submitBtn.disabled = true;
+});
+
+// Footer year
+document.getElementById('yearNow').textContent = new Date().getFullYear();
+
+</script>
+</body>
+</html>
