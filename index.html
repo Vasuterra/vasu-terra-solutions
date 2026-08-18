@@ -329,29 +329,55 @@ h1.hero-headline{
 .cta-banner .btn{margin-top:38px;}
 
 /* ============ CONTACT ============ */
-.contact-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:64px;}
-@media (max-width:900px){.contact-grid{grid-template-columns:1fr;gap:52px;}}
-.field{margin-bottom:20px;}
-.field label{display:block;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;font-family:'IBM Plex Mono',monospace;}
-.field input,.field select,.field textarea{
-  width:100%;border:1px solid var(--line-strong);background:var(--panel);
-  padding:14px 16px;font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink);
-  border-radius:var(--radius);transition:border-color .25s ease;
-}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);}
-.field-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-@media (max-width:520px){.field-row{grid-template-columns:1fr;}}
-.form-note{font-size:12.5px;color:var(--ink-faint);margin-top:16px;}
-
-.contact-info-card{background:var(--forest-deep);color:#fff;padding:44px 36px;}
+.contact-single{max-width:460px;margin:0 auto;}
+.contact-info-card{background:var(--forest-deep);color:#fff;padding:44px 40px;}
 .contact-info-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.14);}
 .contact-info-row:last-of-type{border-bottom:none;}
 .contact-info-row .ci{width:20px;height:20px;flex:none;color:var(--gold);margin-top:2px;}
 .contact-info-row .ci svg{width:100%;height:100%;}
 .contact-info-row .cl-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px;}
 .contact-info-row .cl-value{font-size:14.5px;color:#fff;}
-.linkedin-btn{margin-top:24px;display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,0.35);padding:12px 20px;}
-.linkedin-btn:hover{background:rgba(255,255,255,0.1);}
+.contact-info-row .cl-value a{color:#fff;text-decoration:underline;text-underline-offset:2px;}
+.social-row{display:flex;gap:14px;margin-top:28px;}
+.social-icon-btn{
+  width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+  border:1px solid transparent;border-radius:50%;color:#fff;
+  transition:transform .25s ease, filter .25s ease;
+}
+.social-icon-btn:hover{transform:translateY(-2px);filter:brightness(1.08);}
+.social-icon-btn.linkedin-icon{background:#0A66C2;}
+.social-icon-btn.whatsapp-icon{background:#25D366;}
+
+/* ============ LEGAL OVERLAYS ============ */
+.legal-overlay{
+  display:none;position:fixed;inset:0;z-index:2000;background:var(--bg);
+  flex-direction:column;
+}
+.legal-overlay.open{display:flex;}
+.legal-overlay-bar{border-bottom:1px solid var(--line);background:rgba(250,252,250,0.92);backdrop-filter:blur(10px);flex:none;}
+.legal-overlay-bar-inner{height:70px;display:flex;align-items:center;}
+.legal-close{background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--forest-deep);display:inline-flex;align-items:center;gap:8px;padding:8px 0;}
+.legal-close:hover{color:var(--blue);}
+.legal-overlay-scroll{flex:1;overflow-y:auto;padding:56px 0 100px;}
+.legal-doc{max-width:760px;}
+.legal-doc h1{font-size:clamp(30px,4vw,44px);margin-bottom:8px;}
+.legal-updated{color:var(--ink-faint);font-size:12.5px;margin-bottom:40px;}
+.legal-doc h2{font-size:19px;margin-top:40px;margin-bottom:14px;color:var(--forest-deep);}
+.legal-doc h2:first-of-type{margin-top:0;}
+.legal-doc h3{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;margin-top:22px;margin-bottom:8px;color:var(--forest-deep);}
+.legal-doc p{color:var(--ink-soft);font-size:14.5px;line-height:1.75;margin-bottom:14px;}
+.legal-doc ul{margin:0 0 14px 0;}
+.legal-doc li{position:relative;padding-left:18px;color:var(--ink-soft);font-size:14.5px;line-height:1.75;margin-bottom:8px;}
+.legal-doc li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;background:var(--gold);}
+.legal-kv{border:1px solid var(--line-strong);margin:0 0 20px 0;}
+.legal-kv > div{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--line-strong);}
+.legal-kv > div:last-child{border-bottom:none;}
+.legal-kv dt{margin:0;padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-faint);background:var(--bg-alt);border-right:1px solid var(--line-strong);}
+.legal-kv dd{margin:0;padding:12px 16px;font-size:13.5px;color:var(--ink-soft);}
+@media (max-width:640px){.legal-kv > div{grid-template-columns:1fr;}.legal-kv dt{border-right:none;border-bottom:1px solid var(--line-strong);}}
+.legal-placeholder{background:rgba(176,141,87,0.18);color:var(--forest-deep);padding:1px 5px;border:1px dashed var(--gold);font-size:0.94em;}
+.legal-callout{margin:20px 0;padding:22px 26px;border-left:3px solid var(--gold);background:var(--bg-alt);}
+.legal-callout p{margin:0;font-size:14px;}
 
 /* ============ FOOTER ============ */
 footer{background:var(--forest-deep);color:rgba(255,255,255,0.65);padding:80px 0 32px;}
@@ -658,6 +684,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3v6L4 20h16L15 9V3"/><path d="M9 3h6"/></svg></span><span>Research Institutions</span></div>
       <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></span><span>Universities</span></div>
       <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M2.5 9h19M2.5 15h19M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/></svg></span><span>International Organizations</span></div>
+      <div class="industry-card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M20 10v6"/></svg></span><span>M.Tech / MS &amp; PhD Guidance</span></div>
     </div>
   </div>
 </section>
@@ -774,68 +801,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <!-- ============ CONTACT ============ -->
 <section class="section-pad" id="contact">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Get In Touch</span>
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center;">Get In Touch</span>
       <h2>Start a Conversation</h2>
-      <p class="desc">Tell us about your study area and objectives — we'll respond with a scoped approach within two business days.</p>
+      <p class="desc" style="margin-left:auto;margin-right:auto;">Tell us about your study area and objectives — we'll respond with a scoped approach within two business days.</p>
     </div>
 
-    <div class="contact-grid">
-      <form class="contact-form reveal" id="inquiryForm">
-        <div class="field-row">
-          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" required placeholder="Your full name"></div>
-          <div class="field"><label for="f-org">Organization</label><input id="f-org" name="organization" type="text" required placeholder="Company / agency"></div>
+    <div class="contact-single reveal">
+      <div class="contact-info-card">
+        <div class="contact-info-row">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg></span>
+          <div><div class="cl-label">Email</div><div class="cl-value"><a href="mailto:vasuterrasolutions@gmail.com">vasuterrasolutions@gmail.com</a></div></div>
         </div>
-        <div class="field-row">
-          <div class="field"><label for="f-country">Country</label><input id="f-country" name="country" type="text" required placeholder="Country"></div>
-          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" required placeholder="you@organization.com"></div>
+        <div class="contact-info-row">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg></span>
+          <div><div class="cl-label">Phone</div><div class="cl-value">+91-8149423884</div></div>
         </div>
-        <div class="field-row">
-          <div class="field"><label for="f-phone">Phone Number</label><input id="f-phone" name="phone" type="tel" placeholder="+xx xxxxxxxxxx"></div>
-          <div class="field">
-            <label for="f-service">Service Required</label>
-            <select id="f-service" name="service" required>
-              <option value="" selected disabled>Select a service area</option>
-              <option>Water Resources &amp; Hydrogeology</option>
-              <option>GIS &amp; Remote Sensing</option>
-              <option>Environmental Consulting</option>
-              <option>Site Suitability Analysis</option>
-              <option>Agriculture &amp; Soil Analytics</option>
-              <option>Disaster Risk Management</option>
-              <option>AI &amp; Geospatial Intelligence</option>
-              <option>Infrastructure &amp; Urban Planning</option>
-              <option>Other / Not Sure Yet</option>
-            </select>
-          </div>
+        <div class="contact-info-row">
+          <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
+          <div><div class="cl-label">Office</div><div class="cl-value">Mumbai, Maharashtra, India</div></div>
         </div>
-        <div class="field">
-          <label for="f-message">Message</label>
-          <textarea id="f-message" name="message" rows="5" required placeholder="Tell us about your project, study area, and timeline"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Send Inquiry</button>
-        <p class="form-note" id="formNote">This form is a static demo — connect it to your email service or CRM to receive submissions.</p>
-      </form>
 
-      <div class="contact-info reveal">
-        <div class="contact-info-card">
-          <div class="contact-info-row">
-            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg></span>
-            <div><div class="cl-label">Email</div><div class="cl-value">vasuterrasolutions@gmail.com</div></div>
-          </div>
-          <div class="contact-info-row">
-            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg></span>
-            <div><div class="cl-label">Phone</div><div class="cl-value">+91-8149423884</div></div>
-          </div>
-          <div class="contact-info-row">
-            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg></span>
-            <div><div class="cl-label">Office</div><div class="cl-value">Mumbai, Maharashtra, India</div></div>
-          </div>
-          <div class="contact-info-row">
-            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 21v-8a3 3 0 0 1 6 0M16 13a3 3 0 0 1 6 0v8h-4v-6"/></svg></span>
-            <div><div class="cl-label">LinkedIn</div><div class="cl-value">linkedin.com/company/vasu-terra-solutions</div></div>
-          </div>
-
-          <a href="#" class="linkedin-btn">Connect on LinkedIn &nbsp;→</a>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/company/vasu-terra-solutions" target="_blank" rel="noopener" class="social-icon-btn linkedin-icon" aria-label="Connect on LinkedIn" title="Connect on LinkedIn">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          </a>
+          <a href="https://wa.me/918149423884?text=Hi%20Vasu%20Terra%20Solutions%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener" class="social-icon-btn whatsapp-icon" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.87 11.88L4 20l4.24-1.11a7.9 7.9 0 0 0 3.8.97h.01a7.94 7.94 0 0 0 5.55-13.54ZM12.05 18.4a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.6 6.6 0 1 1 5.59 3.09Zm3.62-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.51.64-.62.77-.23.15-.42.05a5.4 5.4 0 0 1-1.59-.98 5.96 5.96 0 0 1-1.1-1.37c-.12-.2 0-.31.09-.41s.2-.23.29-.35a1.3 1.3 0 0 0 .2-.33.36.36 0 0 0 0-.35c-.05-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.38a.72.72 0 0 0-.53.25 2.2 2.2 0 0 0-.69 1.64 3.8 3.8 0 0 0 .8 2.03 8.7 8.7 0 0 0 3.34 2.95c.47.2.83.32 1.11.41a2.67 2.67 0 0 0 1.23.08c.38-.06 1.17-.48 1.33-.94s.17-.86.12-.94-.18-.14-.37-.24Z"/></svg>
+          </a>
         </div>
       </div>
     </div>
@@ -877,7 +870,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
-        <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul>
+        <ul><li><a href="#" onclick="openLegal('privacy-overlay'); return false;">Privacy Policy</a></li><li><a href="#" onclick="openLegal('terms-overlay'); return false;">Terms &amp; Conditions</a></li></ul>
       </div>
     </div>
     <div class="footer-bottom">
@@ -928,20 +921,284 @@ document.querySelectorAll('.service-cat-head').forEach(btn => {
   });
 });
 
-// Contact form (static demo)
-const form = document.getElementById('inquiryForm');
-const submitBtn = document.getElementById('submitBtn');
-const formNote = document.getElementById('formNote');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  submitBtn.textContent = 'Inquiry Received';
-  formNote.textContent = 'Thank you — this is a static demo form. Connect it to your email service, CRM, or backend to receive live submissions.';
-  submitBtn.disabled = true;
-});
+// Legal document overlays (Privacy Policy / Terms & Conditions)
+function openLegal(id) {
+  const el = document.getElementById(id);
+  el.classList.add('open');
+  el.querySelector('.legal-overlay-scroll').scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+function closeLegal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 // Footer year
 document.getElementById('yearNow').textContent = new Date().getFullYear();
 
 </script>
+
+<!-- ============ LEGAL OVERLAYS ============ -->
+<div class="legal-overlay" id="privacy-overlay" role="dialog" aria-modal="true" aria-label="Privacy Policy">
+  <div class="legal-overlay-bar">
+    <div class="wrap legal-overlay-bar-inner">
+      <button class="legal-close" onclick="closeLegal('privacy-overlay')">&larr; Back to site</button>
+    </div>
+  </div>
+  <div class="legal-overlay-scroll">
+    <div class="wrap legal-doc">
+
+<h1>Privacy Policy</h1>
+<p class="legal-updated mono">Last updated: <span class="legal-placeholder">18/08/2026</span></p>
+
+<h2>1. Preamble</h2>
+<p>This Privacy Policy ("Policy") explains how Vasu Terra Solutions ("Vasu Terra Solutions", the "Firm", "we", "us" or "our") collects, uses, stores, shares, retains and protects personal data. Under the Digital Personal Data Protection Act, 2023 ("DPDP Act") and the Digital Personal Data Protection Rules, 2025 ("DPDP Rules"), together referred to as "Applicable Law", we act as the Data Fiduciary. This Policy applies to individuals ("Data Principals", "you" or "your") who visit our website, send us an enquiry, engage our GIS, remote-sensing, environmental consulting or related professional services, or otherwise interact with us.</p>
+<p>When you give us personal data through our website, by email, telephone, in writing or during a professional engagement, you acknowledge that you have read and understood this Policy. Where we rely on your consent, this Policy and the specific consent notice shown when your data is collected together provide the notice required under Section 5 of the DPDP Act.</p>
+
+<h2>2. Identity and Contact Details of the Data Fiduciary</h2>
+<p>Vasu Terra Solutions is the Data Fiduciary responsible for the personal data covered by this Policy. Our details are:</p>
+<dl class="legal-kv">
+  <div><dt>Legal / Trading Name</dt><dd>Vasu Terra Solutions</dd></div>
+  <div><dt>Nature of Entity</dt><dd>Sole Proprietorship</dd></div>
+  <div><dt>Registered / Business Address</dt><dd>12A, Gokuldham Apartments, Kashiko Nagar, Krushnaban Colony, CIDCO, Nashik - 422009</dd></div>
+  <div><dt>Business E-mail</dt><dd><a href="mailto:vasuterrasolutions@gmail.com">vasuterrasolutions@gmail.com</a></dd></div>
+  <div><dt>Telephone</dt><dd>+91 81494 23884</dd></div>
+  <div><dt>Website</dt><dd><a href="https://vasuterrasolution.com/" target="_blank" rel="noopener">https://vasuterrasolution.com/</a></dd></div>
+</dl>
+
+<h2>3. Scope and Application</h2>
+<p>This Policy covers personal data relating to: (a) visitors to our website; (b) prospective clients who send enquiries; (c) clients and their authorised representatives; (d) individual vendors, consultants and professional advisers; and (e) any other individual whose personal data we handle in the course of our business. It does not cover information about a company, government body or other organisation unless that information, alone or together with other information, identifies an individual.</p>
+
+<h2>4. Personal Data We Collect</h2>
+<p>We may collect the following types of personal data directly from you or create them while providing our services:</p>
+<ul>
+  <li>Identity and contact details: your name, job title, organisation or employer, country of residence, email address and telephone number;</li>
+  <li>Enquiry and project details: the nature of your enquiry, project brief, scope of work, site or area of interest, and related communications;</li>
+  <li>Billing and financial details: billing name and address, GST or tax identification details, bank account or payment references, and invoice history. We collect these details only for invoicing and legal compliance;</li>
+  <li>Technical and usage information: your IP address, browser and device type, pages visited, access date and time, and similar information generated automatically when you use our website or communicate with us electronically; and</li>
+  <li>Other information: any personal data you choose to provide in correspondence, meetings, tender documents or contracts.</li>
+</ul>
+<p>We do not knowingly collect sensitive or special-category personal data beyond what is described above. A project may sometimes include personal data about other people, such as landowners named in survey records provided by a client. In that case, the client is responsible for having the legal authority to share the data with us. Clause 5 below and the indemnity provisions in our Terms and Conditions also apply.</p>
+
+<h2>5. Special Treatment of Client-Supplied Geospatial Data</h2>
+<p>When providing GIS, remote-sensing and environmental consulting services, clients may give us GIS files, coordinates, maps, survey records, drone or satellite imagery, and other geospatial datasets ("Geospatial Data"). Some Geospatial Data may contain personal data or may be capable of being linked to an individual, such as the coordinates of a private home or a survey record naming a landowner or occupant.</p>
+<p>We apply the following additional safeguards to Geospatial Data:</p>
+<ul>
+  <li>only team members who need the data for the relevant project may access it;</li>
+  <li>we store it on access-controlled systems, separate from general business records, and use it only for the project for which it was provided unless another use is separately and lawfully authorised;</li>
+  <li>we share it only where necessary to deliver the agreed services, such as with a sub-consultant who is bound by confidentiality obligations, or where Applicable Law requires disclosure;</li>
+  <li>if it concerns defence installations, critical infrastructure or another regulated category of geospatial information, we handle it in line with the relevant survey and mapping restrictions as well as this Policy; and</li>
+  <li>when the retention period in clause 11 ends, we securely delete or anonymise it unless a contract or Applicable Law requires us to keep it longer.</li>
+</ul>
+<p>Clients are responsible for ensuring that any Geospatial Data they provide was lawfully obtained and that they have all rights and permissions needed to share it with us, as explained further in our Terms and Conditions.</p>
+
+<h2>6. Purpose of Collection and Processing</h2>
+<p>In line with Section 4 of the DPDP Act, we collect and use personal data only for the following purposes:</p>
+<ul>
+  <li>to receive, assess and respond to enquiries sent through our website, email or other channels;</li>
+  <li>to prepare quotations, proposals and project scopes;</li>
+  <li>to set up, manage and deliver projects, including communicating with clients during the work;</li>
+  <li>to issue invoices, process payments and maintain financial and accounting records;</li>
+  <li>to meet tax, accounting, contractual and other legal obligations; and</li>
+  <li>to protect the security, integrity and proper operation of our website and information systems.</li>
+</ul>
+<p>We will not use personal data for a purpose that is incompatible with those listed above unless we obtain fresh consent or have another valid basis under Applicable Law.</p>
+
+<h2>7. Consent</h2>
+<p>Unless Section 7 of the DPDP Act allows us to process data without consent, we rely on consent that is freely given, specific, informed, unconditional and unambiguous. You may give consent through a clear action, such as ticking a box, submitting a form or otherwise confirming your agreement. Processing without consent may include meeting a legal obligation or using information that you voluntarily provided for a specific purpose without indicating that you did not consent.</p>
+<p>Consent statement shown beside our contact or enquiry form: <em>"By submitting this form, you consent to Vasu Terra Solutions using the information provided to respond to your enquiry in accordance with our Privacy Policy."</em></p>
+
+<h2>8. Withdrawal of Consent</h2>
+<p>You may withdraw your consent at any time, and the process should be as easy as giving consent, as required by Section 6(4) of the DPDP Act. To withdraw consent, write to our Grievance Officer using the details in clause 15. Please state that you wish to withdraw consent and identify the personal data or processing activity concerned.</p>
+<p>Withdrawing consent does not make any earlier processing unlawful. If you withdraw consent during an ongoing project or while an invoice remains unpaid, we may be unable to continue providing services. As permitted by Section 6(6) of the DPDP Act, we may still keep and use personal data that is reasonably needed to meet existing legal obligations, including invoicing, warranty and statutory record-keeping requirements.</p>
+
+<h2>9. Disclosure of Personal Data to Third Parties</h2>
+<p>We do not sell personal data. We share it only with the categories of recipients listed below. Depending on the circumstances, a recipient may act as our Data Processor under a written agreement requiring it to follow our instructions and use suitable security measures, or as an independent recipient with its own lawful basis:</p>
+<ul>
+  <li>our website-hosting provider, to operate and secure our website;</li>
+  <li>our email-service provider, to support business communications;</li>
+  <li>our customer relationship management (CRM) provider, to manage enquiries, proposals and client records;</li>
+  <li>our payment gateway or payment-processing provider, to process invoices and payments;</li>
+  <li>our professional advisers, including auditors, accountants, tax consultants and legal counsel, where access is necessary for their work; and</li>
+  <li>regulators, courts, law-enforcement bodies or other government authorities where Applicable Law requires or permits disclosure.</li>
+</ul>
+<p>We do not allow these recipients to use personal data for their own marketing. Each recipient must follow confidentiality and data-protection obligations appropriate to the information it receives.</p>
+
+<h2>10. Cross-Border and Cloud-Based Data Transfers</h2>
+<p>Some service providers listed in clause 9, including hosting, email, CRM and payment providers, may store or process personal data on cloud systems outside India. We transfer data only to jurisdictions that are not restricted by a Central Government notification under Section 16 of the DPDP Act at the relevant time. We also use contractual and technical safeguards consistent with Applicable Law. If the Central Government introduces restrictions for a jurisdiction, we will comply with them.</p>
+
+<h2>11. Data Retention</h2>
+<p>We keep personal data only for as long as reasonably needed for the purpose for which it was collected, or for as long as Applicable Law requires. Our usual retention periods are:</p>
+<ul>
+  <li>Unsuccessful or abandoned enquiries: up to 3 months after the last contact, after which the data is deleted or anonymised, unless you ask us to delete it earlier or consent to a longer period, for example so we can contact you about future opportunities;</li>
+  <li>Completed project records, deliverables and related correspondence: 8–12 weeks after project completion to support contractual, warranty, professional-liability and evidentiary needs;</li>
+  <li>Invoices, billing and tax records: for the minimum period required by applicable tax, accounting and company law, currently up to 8 years under Indian tax law and subject to change, or 10 years if longer; and</li>
+  <li>Technical and website logs: 12 months for security and diagnostic purposes.</li>
+</ul>
+<p>When the relevant retention period ends, and the data is no longer needed for its original purpose or to comply with Applicable Law, we will delete it and instruct our Data Processors to do the same. This will be done in line with Section 8(7) of the DPDP Act and Rule 8 of the DPDP Rules, including any required advance notice.</p>
+
+<h2>12. Security Safeguards and Data-Breach Response</h2>
+<p>In line with Section 8(5) of the DPDP Act and Rule 6 of the DPDP Rules, we use reasonable technical and organisational safeguards to protect personal data in our possession or control. These include access controls, encryption in transit where appropriate, role-based and restricted access to Geospatial Data and client records, secure storage arrangements with hosting and cloud providers, and periodic reviews of our safeguards.</p>
+<p>If a personal data breach occurs, we will act without undue delay to contain it and reduce its effects. We will notify the Data Protection Board of India and affected Data Principals in the manner and within the time required by Section 8(6) of the DPDP Act and the DPDP Rules. The notice will include the required information about the breach, its likely impact, and the steps taken or planned to reduce risk.</p>
+
+<h2>13. Rights of Data Principals</h2>
+<p>Subject to the conditions and exceptions in the DPDP Act, you have the following rights:</p>
+<ul>
+  <li>Access: to receive a summary of the personal data we hold about you and how we process it;</li>
+  <li>Correction and updating: to ask us to correct inaccurate or misleading data and complete or update data that is incomplete or outdated;</li>
+  <li>Erasure: to ask us to delete data that is no longer needed for the purpose for which it was processed, unless Applicable Law requires us to keep it;</li>
+  <li>Withdrawal of consent: as explained in clause 8;</li>
+  <li>Grievance redressal: to ask us to address a concern about how we process your personal data, as explained in clause 15; and</li>
+  <li>Nomination: to nominate another individual to exercise your rights under the DPDP Act if you die or become unable to act, by writing to our Grievance Officer in the manner prescribed by Rule 15 of the DPDP Rules.</li>
+</ul>
+<p>To exercise any of these rights, write to our Grievance Officer using the details in clause 15. We will respond within the time required by Applicable Law and may ask for reasonable information to confirm your identity before acting on your request.</p>
+
+<h2>14. Children's Privacy</h2>
+<p>Our website and services are intended for businesses, professionals and organisations, not for anyone under eighteen (18) years of age (a "Child" under the DPDP Act). We do not knowingly collect personal data from Children. If we learn that we collected a Child's personal data without verifiable consent from a parent or lawful guardian, we will delete it promptly unless Applicable Law allows us to retain it.</p>
+
+<h2>15. Grievance Officer and Grievance Redressal Procedure</h2>
+<p>As required by Section 13 of the DPDP Act, we have appointed the following Grievance Officer to handle questions, requests and concerns about this Policy and our use of personal data:</p>
+<dl class="legal-kv">
+  <div><dt>Grievance Officer</dt><dd><span class="legal-placeholder">To be appointed</span></dd></div>
+  <div><dt>Designation</dt><dd><span class="legal-placeholder">To be completed</span></dd></div>
+  <div><dt>E-mail</dt><dd><span class="legal-placeholder">To be completed</span></dd></div>
+  <div><dt>Postal Address</dt><dd><span class="legal-placeholder">To be completed</span></dd></div>
+</dl>
+<p>We will acknowledge and respond to grievances within the time required by the DPDP Rules. If you are not satisfied with our response, you may escalate the matter to the Data Protection Board of India in the manner prescribed by the Board.</p>
+
+<h2>16. Cookies and Analytics</h2>
+<p>Our website currently uses only technologies that are strictly necessary for it to work, such as session handling for form submissions. We do not currently use non-essential cookies, third-party analytics, tracking pixels or advertising technologies, so we do not display a cookie-consent banner. If we introduce any of these technologies later, we will update this section and add a consent banner or similar tool that allows you to accept or reject non-essential cookies before they are used, as required by Applicable Law.</p>
+
+<h2>17. No Sale of Personal Information</h2>
+<p>We do not sell, rent or trade personal data for money or any other benefit.</p>
+
+<h2>18. Updates to this Policy</h2>
+<p>We may update this Policy when our practices, services or Applicable Law change. The "Last updated" date at the top shows when the Policy was most recently revised. We will publish material changes on our website with a new date. If a change significantly affects how we use personal data, we will also provide an additional notice, such as by email, where practical. Continuing to use our website or services after the notice means that you acknowledge the updated Policy.</p>
+
+<h2>19. Governing Law</h2>
+<p>This Policy is governed by Indian law, including the Digital Personal Data Protection Act, 2023, the Digital Personal Data Protection Rules, 2025 and, where applicable, the Information Technology Act, 2000 and the rules made under it.</p>
+
+<h2>20. Contact Us</h2>
+<p>If you have questions about this Policy or how we handle personal data, contact us using the business email and address in clause 2, or write to the Grievance Officer using the details in clause 15.</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="legal-overlay" id="terms-overlay" role="dialog" aria-modal="true" aria-label="Terms and Conditions">
+  <div class="legal-overlay-bar">
+    <div class="wrap legal-overlay-bar-inner">
+      <button class="legal-close" onclick="closeLegal('terms-overlay')">&larr; Back to site</button>
+    </div>
+  </div>
+  <div class="legal-overlay-scroll">
+    <div class="wrap legal-doc">
+
+<h1>Terms and Conditions</h1>
+<p class="legal-updated mono">Last updated: <span class="legal-placeholder">18-08-2026</span></p>
+
+<h2>1. Preamble and Acceptance</h2>
+<p>These Terms and Conditions ("Terms") explain the rules for using the Vasu Terra Solutions website (the "Website") and for engaging our geographic information system (GIS), remote-sensing, environmental consulting and related professional services (the "Services"). The Services are provided by <span class="legal-placeholder">Insert Legal Name of Proprietor/Entity</span>, trading as "Vasu Terra Solutions" ("Vasu Terra Solutions", the "Firm", "we", "us" or "our"). Anyone who engages our Services is referred to as the "Client", "you" or "your".</p>
+<p>By using the Website, sending us an enquiry, accepting a proposal or quotation, or otherwise engaging our Services, you agree to these Terms and our Privacy Policy. If you do not agree, please do not use the Website or engage our Services. A signed engagement letter, statement of work or project-specific agreement (an "Engagement Agreement") may add to or change these Terms. If there is a conflict, the Engagement Agreement will take priority.</p>
+
+<h2>2. Website Use and Prohibited Activities</h2>
+<p>You may use the Website only for lawful purposes and in line with these Terms. You must not, and must not help anyone else to:</p>
+<ul>
+  <li>use the Website in a way that could disable, overload, damage or disrupt it, or interfere with anyone else's use;</li>
+  <li>try to gain unauthorised access to any part of the Website, another account, or any connected computer system or network;</li>
+  <li>introduce viruses, malware, trojans or any other harmful material;</li>
+  <li>use robots, spiders, scrapers or other automated tools to access, monitor, copy, extract or reproduce Website content, maps, imagery, data or materials without our prior written permission;</li>
+  <li>copy, republish, frame, mirror, distribute or commercially exploit Website content, maps or materials without our prior written permission; or</li>
+  <li>misrepresent your identity or affiliation or use the Website to send unauthorised advertising or promotional material.</li>
+</ul>
+<p>If we reasonably believe that someone has breached this clause, we may restrict, suspend or end their access to the Website. We may also pursue any legal remedies available to us, including an injunction, where Website content has been scraped or reused without permission.</p>
+
+<h2>3. Proposal, Quotation and Project-Scope Process</h2>
+<p>An enquiry does not create a binding engagement. After receiving an enquiry, we may send a written proposal or quotation describing the scope, deliverables, fees, timeline and key assumptions (the "Proposal"). An engagement becomes binding only when the Client accepts the Proposal in writing, including by email, or signs an Engagement Agreement, as applicable. A Proposal remains valid for the period stated in it. If no period is stated, it remains valid for thirty (30) days from its issue date.</p>
+
+<h2>4. Fees, Taxes, Payment Milestones and Late Payment</h2>
+<p>The fees for the Services will be stated in the relevant Proposal or Engagement Agreement. Unless expressly stated otherwise, fees do not include applicable taxes, including Goods and Services Tax (GST). The Client must pay all applicable taxes at the rate in force on the invoice date, in addition to the stated fees.</p>
+<p>Unless we agree otherwise in writing, payments are due according to the milestones stated in the Proposal or Engagement Agreement, such as an advance or mobilisation payment, interim milestone payments and final payment on delivery. Invoices must be paid within 10 days from the invoice date, unless the invoice or Engagement Agreement states a different period.</p>
+<p>Overdue amounts will carry interest at 18% per annum or the highest rate allowed by law, whichever is lower, from the due date until payment is received. If payment remains outstanding for 15 days after the due date, we may suspend work, withhold deliverables or end the engagement, without affecting any other rights or remedies available to us.</p>
+
+<h2>5. Cancellation, Refund and Termination</h2>
+<p>Either party may end an ongoing engagement by giving 7 days' written notice. The Client must still pay for all work completed, expenses incurred and non-cancellable third-party commitments, including data licences, up to the termination date. Payments for completed work and for third-party data, licences or resources already purchased for the Client are non-refundable. If the Client cancels an accepted Proposal before work begins, we may charge 12% to cover administrative and planning costs already incurred.</p>
+<p>We may end an engagement immediately by written notice if the Client fails to pay an amount when due, provides materially inaccurate project data, breaches these Terms, or acts unlawfully or fraudulently, or in a way that exposes the Firm to legal or regulatory risk.</p>
+
+<h2>6. Client Responsibility for Accurate Project Data</h2>
+<p>The Client must provide complete, accurate and timely information and materials reasonably needed for the Services, including data, GIS files, coordinates, maps, survey records, site access and approvals ("Client Data"). The Client confirms that it has all rights, licences and permissions needed to share the Client Data with us and allow us to use it for the engagement. We are not responsible for delays, errors or deficiencies in the deliverables caused by Client Data that is incomplete, inaccurate, outdated or unlawfully obtained.</p>
+
+<h2>7. Project Timelines</h2>
+<p>Any timeline in a Proposal or Engagement Agreement is an estimate. Delivery may depend on matters outside our control, including the timely receipt of Client Data and approvals, satellite revisit frequency, the availability of cloud-free imagery, weather, field-access permissions, ground-truthing requirements, and the Client's timely review and approval at each stage. If we expect a material delay, we will inform the Client and provide a revised timeline as soon as reasonably practical. We are not liable for delays caused by these factors.</p>
+
+<h2>8. Revisions and Out-of-Scope Changes</h2>
+<p>Unless the Proposal or Engagement Agreement states otherwise, the Client may request 3 rounds of revisions, provided the revisions stay within the agreed scope. Additional revisions, or changes to the scope, methodology, data sources, area of interest or deliverable format, will be treated as a change order. We will quote and charge for that work separately, and will begin only after both parties agree to it in writing.</p>
+
+<h2>9. Acceptance of Final Deliverables</h2>
+<p>The Client must review the final deliverables and report any deficiency in writing within 10 business days after delivery. If we do not receive such notice within that period, the deliverables will be treated as accepted. We will correct deficiencies within the agreed scope at no additional charge. A request caused by a later change in scope, requirements or Client Data will be handled as a change order under clause 8.</p>
+
+<h2>10. Ownership of Reports, Maps, Code, Models and Methodologies</h2>
+<p>Once all fees have been paid, the Client will own the final deliverables created specifically for the engagement, including project-specific reports, maps and datasets, for the purpose for which they were commissioned. We continue to own our pre-existing or independently developed methodologies, models, algorithms, scripts, code, templates, tools and know-how, together with any improvements or derivatives, even if they are used or developed during the engagement. Where any of these materials are embedded in a deliverable, the Client receives a non-exclusive, non-transferable licence to use them only for its own internal use in connection with the project. They may not be resold, sublicensed or used for competing engagements unless we agree otherwise in writing.</p>
+
+<h2>11. Third-Party Dataset Licensing</h2>
+<p>Our deliverables may use or be derived from third-party geospatial data, including Sentinel and Landsat imagery, data processed through Google Earth Engine, and other open or licensed datasets ("Third-Party Data"). The use of Third-Party Data and any related deliverable remain subject to the original provider's licence terms, attribution requirements and restrictions, such as the Copernicus/Sentinel Data Terms, the USGS/Landsat data policy and the Google Earth Engine Terms of Service. We cannot give the Client rights beyond those granted by the original provider. The Client is responsible for ensuring that its intended use complies with all applicable third-party terms.</p>
+
+<h2>12. Confidentiality</h2>
+<p>Each party must protect any non-public information received from the other in connection with an engagement, including Client Data, project locations, deliverables, pricing and business information ("Confidential Information"). Confidential Information may be shared only with employees, sub-consultants or professional advisers who need it and are bound by equivalent confidentiality duties; with the disclosing party's prior written consent; or when required by Applicable Law, a court order or a regulatory authority. This duty continues for 2 years after the engagement ends. Confidentiality obligations relating to sensitive Client Data or project locations continue indefinitely.</p>
+
+<h2>13. Regulated and Sensitive Geospatial Data</h2>
+<p>The Client understands that Indian law restricts the survey, mapping, collection and sharing of certain geospatial data, including information about defence installations, critical infrastructure, border areas and other regulated categories. These restrictions include the National Geospatial Policy, 2022, and related guidance from the Department of Science and Technology and other competent authorities. We will not survey, process or share regulated geospatial data unless all required approvals and legal requirements are met. The Client must not ask us to act otherwise and must tell us promptly if a project involves, or may reasonably involve, regulated geospatial data.</p>
+
+<h2>14. Remote-Sensing Limitations and Field Verification</h2>
+<p>Remote-sensing and GIS analysis has inherent limitations. Results may be affected by sensor resolution, cloud or atmospheric interference, gaps between satellite passes, modelling or classification uncertainty, and the accuracy of reference and ground-truth data. Desk-based and remote-sensing deliverables do not replace field investigation, ground surveys or physical verification. They should be verified in the field before being used for decisions with significant financial, safety, legal or regulatory consequences.</p>
+
+<h2>15. No Guarantee of Outcomes</h2>
+<p>We provide our analysis, modelling and advice with reasonable skill and care. However, we cannot guarantee the presence, quantity or quality of groundwater or any other natural resource; the approval of any licence, environmental clearance or permission by an authority; or the commercial, financial or investment result of a project or decision based on our deliverables. These outcomes depend on matters outside our control, including natural conditions, regulatory decisions and market conditions.</p>
+
+<h2>16. Client Responsibility for Final Decisions</h2>
+<p>The Client is responsible for all final engineering, legal, construction, land-acquisition, investment and regulatory-compliance decisions made using our deliverables. Before acting, the Client must obtain independent advice from suitably licensed engineers, architects, advocates, statutory auditors or other professionals where appropriate. Our deliverables support decision-making; they are not engineering designs, legal advice or a replacement for any statutory certification required from a licensed professional.</p>
+<div class="legal-callout">
+  <p><strong>Important Disclaimer</strong><br>Our geospatial analyses and suitability assessments support decision-making. They are based on the data, methods, resolution and assumptions described in the relevant project report. They do not replace field investigation, statutory approval, engineering design or advice from a licensed professional where required.</p>
+</div>
+
+<h2>17. Warranty Disclaimer and Limitation of Liability</h2>
+<p>Except where these Terms or an Engagement Agreement expressly state otherwise, the Services and deliverables are provided on an "as is" basis. To the fullest extent allowed by Applicable Law, we exclude all express and implied warranties, including warranties of merchantability, fitness for a particular purpose and non-infringement.</p>
+<p>To the fullest extent allowed by Applicable Law: (a) our total liability arising from an engagement, whether in contract, tort (including negligence), statute or otherwise, will not exceed the fees actually paid by the Client for the specific Services that gave rise to the claim; and (b) we will not be liable for indirect, incidental, consequential, special or punitive losses, or for loss of profit, revenue, business, data or goodwill, even if we were told that such loss was possible. Nothing in these Terms excludes or limits liability where the law does not allow it, including liability for death or personal injury caused by negligence, or for fraud.</p>
+
+<h2>18. Indemnity</h2>
+<p>The Client will indemnify and protect us against claims, losses, liabilities, damages, costs and reasonable legal fees arising from: (a) Client Data or Third-Party Data selected or supplied by the Client that is inaccurate, unlawfully obtained, unlicensed or provided in breach of another person's rights; (b) the Client's use of deliverables in breach of these Terms, an Engagement Agreement or applicable Third-Party Data licence terms; or (c) the Client's breach of clause 13 on Regulated and Sensitive Geospatial Data.</p>
+
+<h2>19. Force Majeure</h2>
+<p>Neither party is responsible for a failure or delay caused by events beyond its reasonable control. These may include natural disasters, pandemics, war, civil unrest, government action, satellite or data-provider outages, internet or telecommunications failures, or a third party's refusal of field access (a "Force Majeure Event"). The affected party must notify the other promptly and resume performance as soon as reasonably practical. If the event continues for more than 60 days, either party may end the affected engagement by written notice. The Client must still pay for work completed up to the termination date.</p>
+
+<h2>20. Governing Law, Dispute Resolution and Jurisdiction</h2>
+<p>These Terms and any dispute connected with them, including a non-contractual dispute, are governed by the laws of India. The parties will first try to resolve the dispute through good-faith negotiation within 60 days after written notice. If they cannot resolve it, the dispute will be finally settled by arbitration under the Arbitration and Conciliation Act, 1996. The arbitration will be seated in Mumbai, Maharashtra, conducted in English, and heard by one arbitrator jointly appointed by the parties. Subject to the arbitration requirement, the courts at Mumbai, Maharashtra, will have exclusive jurisdiction over matters that cannot be referred to arbitration and supervisory jurisdiction over the arbitration.</p>
+
+<h2>21. Updates, Severability, Waiver, Assignment and Entire Agreement</h2>
+<h3>21.1 Updates</h3>
+<p>We may update these Terms from time to time. The "Last updated" date shows when the current version took effect. Updated Terms apply once they are posted on the Website and will govern engagements entered into after that date. An engagement already in progress will continue under the Terms that applied when the relevant Proposal was accepted, unless the parties agree otherwise in writing.</p>
+<h3>21.2 Severability</h3>
+<p>If a court or arbitral tribunal finds any part of these Terms invalid, illegal or unenforceable, that part will be removed and the rest of the Terms will remain in effect.</p>
+<h3>21.3 Waiver</h3>
+<p>A party does not waive a right by delaying or failing to exercise it. Exercising a right once, or only in part, does not prevent that party from exercising it again or using any other right.</p>
+<h3>21.4 Assignment</h3>
+<p>The Client may not assign, transfer or subcontract its rights or obligations under these Terms without our prior written consent. We may assign or subcontract some or all of our rights or obligations to an affiliate, successor or sub-consultant involved in delivering the Services, provided that any sub-consultant is bound by confidentiality obligations at least as protective as these Terms.</p>
+<h3>21.5 Entire Agreement</h3>
+<p>These Terms, the applicable Proposal or Engagement Agreement, and our Privacy Policy form the entire agreement between the parties on their subject matter. They replace all earlier oral or written discussions, representations and agreements, except in the case of fraudulent misrepresentation.</p>
+
+<h2>22. Contact Information</h2>
+<p>If you have any questions about these Terms, please contact us using the details below:</p>
+<dl class="legal-kv">
+  <div><dt>Legal / Trading Name</dt><dd>"Vasu Terra Solutions"</dd></div>
+  <div><dt>Business Address</dt><dd>12A, Gokuldham Apartments, Kashiko Nagar, Krushnaban Colony, CIDCO, Nashik - 422009</dd></div>
+  <div><dt>Business E-mail</dt><dd><a href="mailto:vasuterrasolutions@gmail.com">vasuterrasolutions@gmail.com</a></dd></div>
+  <div><dt>Telephone</dt><dd>+91 81494 23884</dd></div>
+</dl>
+<p class="legal-updated mono">Last updated: <span class="legal-placeholder">18/08/2026</span></p>
+
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
