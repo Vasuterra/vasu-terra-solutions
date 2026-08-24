@@ -319,11 +319,13 @@ h1.hero-headline{
 .service-cat.open .service-cat-body{max-height:600px;}
 .service-tags{display:flex;flex-wrap:wrap;gap:10px;padding:6px 6px 34px 66px;}
 @media (max-width:640px){.service-tags{padding-left:6px;}}
-.service-tags span{
+.service-tags span,.service-tags a{
   font-size:13.5px;color:var(--ink-soft);
   padding:9px 16px;border:1px solid var(--line-strong);border-radius:20px;
   background:var(--panel);
 }
+.service-tags a{color:var(--blue);font-weight:600;transition:background .2s ease,color .2s ease;}
+.service-tags a:hover{background:var(--blue);color:#fff;}
 
 /* ============ INDUSTRIES ============ */
 .industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong);}
@@ -657,7 +659,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </button>
         <div class="service-cat-body">
           <div class="service-tags">
-            <span>Groundwater Potential Zone Mapping</span><span>Aquifer Assessment</span><span>Artificial Recharge Planning</span><span>Watershed Delineation</span><span>Watershed Prioritization</span><span>Hydrological Modelling</span><span>River Basin Analysis</span><span>Runoff Analysis</span><span>Water Resource Planning</span>
+            <a href="groundwater-potential-zone-mapping.html">Groundwater Potential Zone Mapping</a><span>Aquifer Assessment</span><span>Artificial Recharge Planning</span><span>Watershed Delineation</span><span>Watershed Prioritization</span><span>Hydrological Modelling</span><span>River Basin Analysis</span><span>Runoff Analysis</span><span>Water Resource Planning</span>
           </div>
         </div>
       </div>
