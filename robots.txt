@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vasuterrasolution.com/sitemap.xml
+Sitemap: https://vasuterrasolutions.com/sitemap.xml
