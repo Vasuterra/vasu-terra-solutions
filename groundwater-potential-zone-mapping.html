@@ -1,266 +1,791 @@
-<!DOCTYPE html>
-<html lang="en-IN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Groundwater Potential Zone Mapping Services India | VTS</title>
-  <meta name="description" content="Groundwater potential zone mapping services using GIS, remote sensing, AHP and field validation for watershed, irrigation and recharge planning across India.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://vasuterrasolutions.com/groundwater-potential-zone-mapping.html">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Vasu Terra Solutions">
-  <meta property="og:title" content="Groundwater Potential Zone Mapping Services in India">
-  <meta property="og:description" content="GIS and remote-sensing groundwater assessment for watershed, recharge and water-resource planning.">
-  <meta property="og:url" content="https://vasuterrasolutions.com/groundwater-potential-zone-mapping.html">
-  <meta property="og:image" content="https://vasuterrasolutions.com/assets/groundwater-recharge-zone-map.webp">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Groundwater Potential Zone Mapping",
-    "serviceType": "GIS and Remote Sensing Groundwater Assessment",
-    "url": "https://vasuterrasolutions.com/groundwater-potential-zone-mapping.html",
-    "description": "Groundwater potential zone mapping using GIS, remote sensing, multi-criteria analysis and field validation for water-resource planning.",
-    "areaServed": {"@type": "Country", "name": "India"},
-    "provider": {
-      "@type": "ProfessionalService",
-      "name": "Vasu Terra Solutions",
-      "url": "https://vasuterrasolutions.com/",
-      "email": "vasuterrasolutions@gmail.com",
-      "address": {"@type": "PostalAddress", "addressRegion": "Maharashtra", "addressCountry": "IN"}
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is groundwater potential zone mapping?",
-        "acceptedAnswer": {"@type": "Answer", "text": "It is a GIS-based assessment that integrates hydrogeological, terrain, drainage, soil, land-use, rainfall and structural indicators to classify areas by their relative groundwater potential."}
-      },
-      {
-        "@type": "Question",
-        "name": "Which datasets are used for groundwater potential mapping?",
-        "acceptedAnswer": {"@type": "Answer", "text": "The exact inputs depend on the study area, but commonly include geology, geomorphology, lineament density, drainage density, slope, soil, rainfall, land use and land cover, elevation and available well data."}
-      },
-      {
-        "@type": "Question",
-        "name": "Can the groundwater potential map identify an exact borewell location?",
-        "acceptedAnswer": {"@type": "Answer", "text": "The map supports regional screening and prioritisation. Final borewell siting should combine the model with field hydrogeological and geophysical investigations."}
-      },
-      {
-        "@type": "Question",
-        "name": "What deliverables are provided?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Typical deliverables include thematic layers, a classified groundwater potential map, methodology and weighting tables, validation results, GIS files, map layouts and a technical report."}
-      }
-    ]
-  }
-  </script>
-  <style>
-    :root{
-      --bg:#FAFCFA;--alt:#F1F5F1;--panel:#fff;--ink:#0B1F1C;--soft:#4B5C56;
-      --forest:#0A2A20;--green:#123C2E;--blue:#124560;--gold:#B08D57;
-      --line:#DFE6E0;--strong:#C9D3CB;--wrap:1160px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-    h1,h2,h3{font-family:'Fraunces',serif;line-height:1.12;margin:0;color:var(--forest)}
-    h1{font-size:clamp(42px,6vw,76px);letter-spacing:-.025em;max-width:970px}
-    h2{font-size:clamp(31px,4vw,48px);letter-spacing:-.015em}
-    h3{font-size:21px}
-    p{margin:0;color:var(--soft)}
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%;height:auto}
-    .wrap{width:min(var(--wrap),calc(100% - 48px));margin:auto}
-    .mono{font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
-    header{height:92px;border-bottom:1px solid var(--line);background:rgba(250,252,250,.96);position:sticky;top:0;z-index:20}
-    .nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:28px}
-    .brand{display:flex;align-items:center;gap:14px;min-width:260px}
-    .brand img{width:36px;height:46px;object-fit:contain}
-    .brand-name{font:600 18px 'Fraunces',serif;color:var(--forest)}
-    .brand-sub{display:block;font:10px 'IBM Plex Mono',monospace;letter-spacing:.13em;color:#7c8b84;margin-top:2px}
-    nav{display:flex;gap:28px;align-items:center;font-size:14px;color:var(--soft)}
-    nav a:hover{color:var(--blue)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 21px;border:1px solid currentColor;font-weight:700;font-size:13px;letter-spacing:.03em}
-    .btn-light{color:var(--forest);background:transparent}
-    .btn-light:hover{background:var(--forest);color:white}
-    .btn-gold{background:var(--gold);border-color:var(--gold);color:white}
-    .btn-gold:hover{background:#9a7849}
-    .hero{background:var(--forest);color:white;padding:92px 0 86px;position:relative;overflow:hidden}
-    .hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:112px 112px}
-    .hero .wrap{position:relative}
-    .crumb{color:#d2dcd7;margin-bottom:34px}
-    .crumb a{color:#d9b77d}
-    .hero h1{color:white}
-    .hero-lead{font-size:19px;color:#d8e2dd;max-width:800px;margin-top:28px}
-    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
-    .hero-actions .secondary{color:white;background:transparent;border-color:rgba(255,255,255,.5)}
-    .facts{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid rgba(255,255,255,.16);margin-top:58px}
-    .fact{padding:24px;border-right:1px solid rgba(255,255,255,.16)}
-    .fact:last-child{border-right:0}.fact strong{display:block;color:#fff;font-size:15px}.fact span{color:#aebfb7;font-size:12px}
-    .section{padding:88px 0}.section.alt{background:var(--alt)}
-    .eyebrow{color:var(--gold);margin-bottom:15px;display:block}
-    .section-head{max-width:760px;margin-bottom:44px}.section-head p{font-size:18px;margin-top:18px}
-    .two-col{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
-    .map-card{background:#fff;border:1px solid var(--strong);padding:16px;box-shadow:0 24px 70px -40px rgba(11,31,28,.45)}
-    .map-card img{width:100%;max-height:570px;object-fit:contain;background:#f5f7f5}
-    .caption{padding:13px 2px 0;color:#73827a}
-    .prose p+p{margin-top:17px}
-    .notice{margin-top:26px;padding:20px;border-left:3px solid var(--gold);background:#fff;color:var(--soft)}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--strong);border:1px solid var(--strong)}
-    .card{background:#fff;padding:31px;min-height:190px}.card .num{color:var(--gold);margin-bottom:25px;display:block}.card p{margin-top:11px;font-size:14px}
-    .layers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-    .layer{background:white;border:1px solid var(--line);padding:20px 18px;color:var(--forest);font-weight:600;font-size:14px}
-    .deliverables{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    .deliverable{padding:25px;border:1px solid var(--line);background:white;display:flex;gap:15px}
-    .tick{color:var(--gold);font-weight:700}.deliverable p{font-size:14px}
-    .uses{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .use{background:var(--forest);padding:30px;min-height:175px}.use h3{color:white}.use p{color:#bccbc4;margin-top:12px;font-size:14px}
-    .faq{border-top:1px solid var(--strong)}
-    details{border-bottom:1px solid var(--strong);padding:22px 4px}
-    summary{cursor:pointer;font-weight:700;color:var(--forest);font-size:17px}
-    details p{margin-top:13px;max-width:900px}
-    .cta{background:var(--blue);color:white;padding:70px 0;text-align:center}.cta h2{color:white}.cta p{color:#cddde5;max-width:680px;margin:18px auto 28px}
-    footer{background:#071d17;color:white;padding:42px 0}.footer-row{display:flex;justify-content:space-between;align-items:center;gap:25px}.footer-row p{color:#9fb1a8;font-size:13px}
-    @media(max-width:900px){nav{display:none}.two-col{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.fact:nth-child(2){border-right:0}.layers{grid-template-columns:1fr 1fr}.grid,.uses{grid-template-columns:1fr 1fr}}
-    @media(max-width:600px){header{height:78px}.brand-sub{display:none}.nav>.btn{display:none}.wrap{width:min(100% - 32px,var(--wrap))}.hero{padding:66px 0}.facts,.grid,.uses,.deliverables{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid rgba(255,255,255,.16)}.layers{grid-template-columns:1fr 1fr}.section{padding:66px 0}.footer-row{align-items:flex-start;flex-direction:column}}
-  </style>
-</head>
-<body>
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="index.html" aria-label="Vasu Terra Solutions homepage">
-        <img src="assets/vasu-terra-solutions-logo.webp" width="501" height="687" alt="Vasu Terra Solutions logo">
-        <span><span class="brand-name">Vasu Terra Solutions</span><span class="brand-sub">Where Earth Observation Meets Innovation</span></span>
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="index.html#about">About</a><a href="index.html#services">Services</a><a href="index.html#industries">Industries</a><a href="index.html#process">Process</a><a href="#faq">FAQ</a>
-      </nav>
-      <a class="btn btn-light" href="#consultation">Request Consultation</a>
-    </div>
-  </header>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Groundwater Potential Zone Mapping Services in India | VTS</title><meta name="description" content="Groundwater potential zone mapping using GIS, remote sensing, thematic layers and validation. Vasu Terra Solutions delivers maps and spatial analysis for planning in India."><link rel="canonical" href="https://vasuterrasolutions.com/groundwater-potential-zone-mapping.html"><meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="website"><meta property="og:title" content="Groundwater Potential Zone Mapping | Vasu Terra Solutions"><meta property="og:description" content="GIS and remote-sensing groundwater assessments with transparent methodology and planning-ready deliverables."><meta property="og:url" content="https://vasuterrasolutions.com/groundwater-potential-zone-mapping.html"><meta property="og:site_name" content="Vasu Terra Solutions"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Groundwater Potential Zone Mapping", "serviceType": "GIS and Remote Sensing Groundwater Potential Assessment", "provider": {"@type": "Organization", "name": "Vasu Terra Solutions", "url": "https://vasuterrasolutions.com/"}, "areaServed": {"@type": "Country", "name": "India"}, "url": "https://vasuterrasolutions.com/groundwater-potential-zone-mapping.html", "description": "GIS and remote sensing based groundwater potential zone mapping, thematic layer analysis, validation and planning-ready GIS deliverables."}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is groundwater potential zone mapping?", "acceptedAnswer": {"@type": "Answer", "text": "It is a regional GIS-based assessment combining geological, geomorphological, terrain, drainage, rainfall, land use and, where available, field indicators to classify relative groundwater potential."}}, {"@type": "Question", "name": "Which datasets are used?", "acceptedAnswer": {"@type": "Answer", "text": "Potential inputs include geology, geomorphology, lineament and drainage density, slope, soil, rainfall, land-use/land-cover, aquifer and well data. The final selection depends on local conditions and data quality."}}, {"@type": "Question", "name": "Can this identify an exact borewell location?", "acceptedAnswer": {"@type": "Answer", "text": "No. Regional potential maps support screening and prioritisation, but final borewell siting requires site-specific hydrogeological and, where appropriate, geophysical investigation."}}, {"@type": "Question", "name": "Can well records be used for validation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Reliable well yield, groundwater level and borehole records can help test how well the classified zones reflect observed conditions."}}, {"@type": "Question", "name": "What do you need for a quotation?", "acceptedAnswer": {"@type": "Answer", "text": "Share the area-of-interest boundary or location, approximate area, intended use, scale, available data, expected deliverables and timeline."}}]}</script><style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#FAFCFA;
+  --bg-alt:#F1F5F1;
+  --panel:#FFFFFF;
+  --ink:#0B1F1C;
+  --ink-soft:#4B5C56;
+  --ink-faint:#8A968F;
+  --forest:#123C2E;
+  --forest-deep:#0A2A20;
+  --blue:#124560;
+  --blue-soft:#1D5B7A;
+  --gold:#B08D57;
+  --line:#DFE6E0;
+  --line-strong:#C9D3CB;
+  --shadow: 0 20px 60px -25px rgba(11,31,28,0.25);
+  --radius: 2px;
+  --wrap: 1180px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{
+  font-family:'Fraunces',serif;
+  color:var(--forest-deep);
+  margin:0;
+  line-height:1.12;
+  font-weight:600;
+  letter-spacing:-0.01em;
+}
+p{margin:0;text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+ul{margin:0;padding:0;list-style:none;}
+button{font-family:inherit;cursor:pointer;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px;}
+@media (max-width:640px){.wrap{padding:0 20px;}}
 
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div class="crumb mono"><a href="index.html">Home</a> / Services / Groundwater Mapping</div>
-        <h1>Groundwater Potential Zone Mapping Services in India</h1>
-        <p class="hero-lead">Scientific GIS and remote-sensing assessment to identify, classify and validate areas with favourable groundwater potential—supporting watershed programmes, irrigation planning, recharge interventions and climate-resilient water management.</p>
-        <div class="hero-actions"><a class="btn btn-gold" href="#consultation">Discuss Your Study Area</a><a class="btn secondary" href="#methodology">View Methodology</a></div>
-        <div class="facts">
-          <div class="fact"><strong>GIS &amp; Remote Sensing</strong><span>Integrated spatial evidence</span></div>
-          <div class="fact"><strong>Multi-Criteria Analysis</strong><span>Project-specific weighting</span></div>
-          <div class="fact"><strong>Field Validation</strong><span>Where reliable data are available</span></div>
-          <div class="fact"><strong>Planning-Ready Outputs</strong><span>Maps, GIS layers and report</span></div>
-        </div>
-      </div>
-    </section>
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+.eyebrow::before{
+  content:"";
+  width:22px;height:1px;
+  background:var(--gold);
+  display:inline-block;
+}
 
-    <section class="section">
-      <div class="wrap two-col">
-        <div class="prose">
-          <span class="eyebrow mono">Service Overview</span>
-          <h2>From scattered indicators to an actionable groundwater picture</h2>
-          <p>Groundwater occurrence is controlled by the interaction of geology, landform, slope, drainage, fractures, soil, rainfall and land use. No single dataset provides the complete answer. Vasu Terra Solutions integrates these indicators within a GIS environment to classify the study area into relative groundwater potential zones.</p>
-          <p>The analysis can support district and watershed planning, artificial recharge programmes, groundwater monitoring, agricultural water management, baseline studies and the prioritisation of detailed field investigations.</p>
-          <div class="notice"><strong>Important:</strong> groundwater potential mapping is a regional decision-support method. It does not replace detailed hydrogeological or geophysical investigation for final borewell siting.</div>
-        </div>
-        <figure class="map-card">
-          <img src="assets/groundwater-recharge-zone-map.webp" width="582" height="905" alt="GIS groundwater recharge potential zone map" loading="lazy" decoding="async">
-          <figcaption class="caption mono">Representative groundwater assessment output</figcaption>
-        </figure>
-      </div>
-    </section>
+section{position:relative;}
+.section-pad{padding:112px 0;}
+@media (max-width:900px){.section-pad{padding:76px 0;}}
 
-    <section class="section alt" id="methodology">
-      <div class="wrap">
-        <div class="section-head"><span class="eyebrow mono">Methodology</span><h2>How the groundwater potential model is developed</h2><p>The method is selected according to the terrain, scale, available datasets and intended decision.</p></div>
-        <div class="grid">
-          <article class="card"><span class="num mono">01 — Scope</span><h3>Define the decision</h3><p>Confirm the study boundary, map scale, intended use, required classes, field data and reporting standard.</p></article>
-          <article class="card"><span class="num mono">02 — Data</span><h3>Compile spatial inputs</h3><p>Acquire satellite imagery, DEM, rainfall, soil, geology, geomorphology and available groundwater records.</p></article>
-          <article class="card"><span class="num mono">03 — Layers</span><h3>Prepare thematic layers</h3><p>Process slope, drainage, lineament, land-use and other evidence layers using a consistent projection and resolution.</p></article>
-          <article class="card"><span class="num mono">04 — Model</span><h3>Weight and integrate</h3><p>Apply an appropriate method such as weighted overlay, AHP, fuzzy logic or machine learning, depending on project needs.</p></article>
-          <article class="card"><span class="num mono">05 — Validate</span><h3>Check against observations</h3><p>Compare classified zones with well yield, water level, field evidence or other dependable reference data where available.</p></article>
-          <article class="card"><span class="num mono">06 — Deliver</span><h3>Translate into action</h3><p>Prepare final maps, GIS layers, interpretation, limitations and recommendations for planning and further investigation.</p></article>
-        </div>
-      </div>
-    </section>
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease), transform .9s var(--ease);}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
 
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head"><span class="eyebrow mono">Typical Inputs</span><h2>Thematic layers considered</h2><p>Layer selection is evidence-led. Only relevant and sufficiently reliable datasets are included.</p></div>
-        <div class="layers">
-          <div class="layer">Geology</div><div class="layer">Geomorphology</div><div class="layer">Lineament Density</div><div class="layer">Drainage Density</div>
-          <div class="layer">Slope &amp; Elevation</div><div class="layer">Soil Characteristics</div><div class="layer">Rainfall</div><div class="layer">Land Use / Land Cover</div>
-          <div class="layer">Topographic Wetness</div><div class="layer">Aquifer Information</div><div class="layer">Well Inventory</div><div class="layer">Water-Level Records</div>
-        </div>
-      </div>
-    </section>
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 30px;
+  font-size:14px;font-weight:600;letter-spacing:0.03em;text-transform:uppercase;
+  border:1px solid transparent;
+  border-radius:var(--radius);
+  cursor:pointer;
+  transition:all .35s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{background:var(--gold);color:var(--forest-deep);}
+.btn-primary:hover{background:#c7a066;transform:translateY(-2px);box-shadow:0 14px 28px -12px rgba(176,141,87,0.55);}
+.btn-outline-light{background:transparent;border-color:rgba(255,255,255,0.5);color:#fff;}
+.btn-outline-light:hover{background:rgba(255,255,255,0.12);border-color:#fff;}
+.btn-outline-dark{background:transparent;border-color:var(--forest);color:var(--forest);}
+.btn-outline-dark:hover{background:var(--forest);color:#fff;}
+.btn-block{width:100%;}
 
-    <section class="section alt">
-      <div class="wrap two-col">
-        <figure class="map-card">
-          <img src="assets/groundwater-potential-zone-validation-map.webp" width="778" height="1100" alt="Groundwater potential zone validation using well observations" loading="lazy" decoding="async">
-          <figcaption class="caption mono">Representative model-validation output</figcaption>
-        </figure>
-        <div>
-          <div class="section-head"><span class="eyebrow mono">Deliverables</span><h2>What your organisation receives</h2><p>Outputs can be adapted to government, engineering, research or development-programme requirements.</p></div>
-          <div class="deliverables">
-            <div class="deliverable"><span class="tick">✓</span><p>Classified groundwater potential zone map</p></div>
-            <div class="deliverable"><span class="tick">✓</span><p>Processed thematic maps and GIS layers</p></div>
-            <div class="deliverable"><span class="tick">✓</span><p>Criteria, ranks and weighting tables</p></div>
-            <div class="deliverable"><span class="tick">✓</span><p>Validation analysis, where data permit</p></div>
-            <div class="deliverable"><span class="tick">✓</span><p>Area statistics and priority-zone summaries</p></div>
-            <div class="deliverable"><span class="tick">✓</span><p>Technical methodology and interpretation report</p></div>
-            <div class="deliverable"><span class="tick">✓</span><p>Print-ready maps and digital spatial files</p></div>
-            <div class="deliverable"><span class="tick">✓</span><p>Planning recommendations and stated limitations</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
+/* ============ HEADER ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(250,252,250,0.86);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease, background .3s ease;
+}
+header.scrolled{border-bottom-color:var(--line);}
+.nav-inner{
+  max-width:var(--wrap);margin:0 auto;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:82px;
+}
+@media (max-width:640px){.nav-inner{padding:0 20px;height:70px;}}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-mark{width:auto;height:44px;flex:none;display:flex;align-items:center;}
+.brand-mark img{height:100%;width:auto;display:block;}
+.brand-text{display:flex;flex-direction:column;line-height:1.05;}
+.brand-name{font-family:'Fraunces',serif;font-weight:600;font-size:16.5px;letter-spacing:0.01em;color:var(--forest-deep);}
+header .brand-name{color:var(--forest);}
+.brand-sub{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px;}
 
-    <section class="section">
-      <div class="wrap">
-        <div class="section-head"><span class="eyebrow mono">Applications</span><h2>Where the analysis can be used</h2></div>
-        <div class="uses">
-          <article class="use"><h3>Watershed Development</h3><p>Prioritise areas for groundwater conservation and focused field assessment.</p></article>
-          <article class="use"><h3>Artificial Recharge Planning</h3><p>Support preliminary screening for recharge structures and intervention zones.</p></article>
-          <article class="use"><h3>Agricultural Water Planning</h3><p>Understand spatial variation in groundwater potential for irrigation strategies.</p></article>
-          <article class="use"><h3>Government Programmes</h3><p>Provide transparent spatial evidence for district, block and watershed decisions.</p></article>
-          <article class="use"><h3>Infrastructure Studies</h3><p>Add groundwater context to feasibility, environmental and regional planning work.</p></article>
-          <article class="use"><h3>Research &amp; Monitoring</h3><p>Establish a reproducible spatial baseline for validation and future updates.</p></article>
-        </div>
-      </div>
-    </section>
+nav.primary-nav{display:flex;align-items:center;gap:36px;margin-right:36px;}
+.brand{margin-right:auto;}
+nav.primary-nav a{
+  white-space:nowrap;font-size:13.5px;font-weight:500;color:var(--ink-soft);
+  position:relative;padding:4px 0;
+  transition:color .25s ease;
+}
+nav.primary-nav a::after{
+  content:"";position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);
+  transition:width .3s var(--ease);
+}
+nav.primary-nav a:hover{color:var(--forest-deep);}
+nav.primary-nav a:hover::after{width:100%;}
+.nav-cta{display:flex;align-items:center;gap:22px;}
+.nav-cta .btn{padding:12px 22px;font-size:12.5px;}
+.nav-link-cta{font-size:13.5px;font-weight:700;letter-spacing:0.02em;color:var(--forest-deep);text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:6px;white-space:nowrap;transition:color .3s var(--ease);}
+.nav-link-cta:hover{color:var(--gold);}
+@media (max-width:960px){nav.primary-nav{display:none;}}
 
-    <section class="section alt" id="faq">
-      <div class="wrap">
-        <div class="section-head"><span class="eyebrow mono">Frequently Asked Questions</span><h2>Groundwater mapping FAQs</h2></div>
-        <div class="faq">
-          <details><summary>What is groundwater potential zone mapping?</summary><p>It is a GIS-based assessment that integrates hydrogeological, terrain, drainage, soil, land-use, rainfall and structural indicators to classify areas by their relative groundwater potential.</p></details>
-          <details><summary>Which datasets are used?</summary><p>Common inputs include geology, geomorphology, lineament density, drainage density, slope, soil, rainfall, land use and land cover, elevation, aquifer information and available well data. The final selection depends on local conditions and data quality.</p></details>
-          <details><summary>Can the map identify an exact borewell location?</summary><p>The map is suitable for regional screening and prioritisation. Final borewell siting should combine the model with field hydrogeological and geophysical investigations.</p></details>
-          <details><summary>Can existing well data be used for validation?</summary><p>Yes. Reliable well yield, depth-to-water, seasonal water-level or borehole records can be used to test how well the classified zones agree with observed groundwater conditions.</p></details>
-          <details><summary>What information is needed for a quotation?</summary><p>Please provide the study-area boundary or location, approximate area, intended use, expected deliverables, preferred scale, available field data and required completion timeline.</p></details>
-        </div>
-      </div>
-    </section>
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:8px;}
+.menu-toggle span{width:22px;height:1.5px;background:var(--forest-deep);display:block;}
+@media (max-width:960px){.menu-toggle{display:flex;}.nav-cta .btn,.nav-cta .nav-link-cta{display:none;}}
 
-    <section class="cta" id="consultation">
-      <div class="wrap"><span class="eyebrow mono">Project Enquiry</span><h2>Discuss your groundwater mapping requirement</h2><p>Share the study location, approximate area, intended decision, available data and timeline. VTS will recommend a suitable scope and methodology.</p><a class="btn btn-gold" href="mailto:vasuterrasolutions@gmail.com?subject=Groundwater%20Potential%20Zone%20Mapping%20Enquiry">Email Vasu Terra Solutions</a></div>
-    </section>
-  </main>
+.mobile-nav{
+  display:none;position:fixed;inset:70px 0 0 0;background:var(--bg);z-index:999;
+  padding:36px 24px; overflow-y:auto;
+}
+.mobile-nav.open{display:block;}
+.mobile-nav a{display:block;font-family:'Fraunces',serif;font-size:24px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--forest-deep);}
+.mobile-nav .btn{margin-top:24px;}
 
-  <footer>
-    <div class="wrap footer-row"><div><strong>Vasu Terra Solutions</strong><p>Where Earth Observation Meets Innovation</p></div><p>GIS · Remote Sensing · Water Resources · Environmental Analytics</p><p>© 2026 Vasu Terra Solutions</p></div>
-  </footer>
-</body>
-</html>
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  background:linear-gradient(160deg,#0A2A20 0%, #123C2E 46%, #124560 100%);
+  overflow:hidden;padding-top:82px;
+}
+.hero-grid-overlay{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size:56px 56px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.15) 80%);
+}
+.hero-contours{position:absolute;inset:0;opacity:0.5;}
+.hero-contours svg{width:100%;height:100%;}
+.hero-scanline{
+  position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(176,141,87,0.85), transparent);
+  animation:scan 7s linear infinite;
+}
+@keyframes scan{0%{top:8%;opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{top:92%;opacity:0;}}
+
+.hero-inner{position:relative;z-index:2;max-width:var(--wrap);margin:0 auto;padding:120px 32px 90px;width:100%;}
+@media (max-width:640px){.hero-inner{padding:90px 20px 70px;}}
+.hero-coord{
+  font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;
+  color:rgba(255,255,255,0.7);text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;margin-bottom:30px;
+}
+.hero-coord::before{content:"";width:8px;height:8px;border:1px solid var(--gold);border-radius:50%;box-shadow:0 0 0 4px rgba(176,141,87,0.18);}
+h1.hero-headline{
+  font-size:clamp(38px, 5.4vw, 68px);
+  color:#fff;max-width:920px;font-weight:600;
+}
+.hero-sub{
+  margin-top:28px;max-width:640px;font-size:18px;line-height:1.7;
+  color:rgba(255,255,255,0.82);
+}
+.hero-actions{display:flex;gap:18px;flex-wrap:wrap;margin-top:44px;}
+.hero-stats{
+  margin-top:88px;display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(255,255,255,0.16);padding-top:32px;gap:24px;
+}
+.hero-stats .stat-num{font-family:'Fraunces',serif;font-size:28px;color:#fff;font-weight:600;}
+.hero-stats .stat-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-top:6px;}
+@media (max-width:800px){.hero-stats{grid-template-columns:repeat(2,1fr);row-gap:28px;}}
+
+/* ============ CONTOUR DIVIDER ============ */
+.contour-divider{height:64px;overflow:hidden;position:relative;}
+.contour-divider svg{width:100%;height:100%;display:block;}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:80px;align-items:center;}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:52px;}}
+.about-copy p{color:var(--ink-soft);font-size:16.5px;margin-bottom:20px;}
+.about-copy p:last-child{margin-bottom:0;}
+.about-visual{position:relative;background:var(--forest-deep);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);padding:28px 28px 0;display:flex;flex-direction:column;}
+.about-visual img{width:100%;height:auto;background:#fff;}
+.about-visual-caption{padding:16px 4px 20px;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);}
+.about-lead{font-family:'Fraunces',serif;font-size:23px;color:var(--forest-deep);font-weight:500;margin-bottom:26px;line-height:1.4;}
+
+.mini-list{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;}
+.mini-list li{display:flex;align-items:baseline;gap:10px;font-size:14.5px;color:var(--ink-soft);}
+.mini-list li::before{content:"";width:5px;height:5px;background:var(--gold);flex:none;transform:translateY(-3px);}
+.about-founders{margin-top:36px;padding-top:32px;border-top:1px solid var(--line-strong);}
+.about-founders-heading{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--forest-deep);margin-bottom:14px;}
+.about-founders .founder-bio{margin-top:14px;font-size:14.5px;line-height:1.75;color:var(--ink-soft);}
+.about-founders .founder-bio strong{color:var(--forest-deep);font-weight:600;}
+.about-contact-rows{margin-top:24px;padding-top:20px;border-top:1px solid var(--line-strong);max-width:420px;}
+.contact-info-row-light{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-strong);}
+.contact-info-row-light:last-of-type{border-bottom:1px solid transparent;}
+.contact-info-row-light .ci{width:20px;height:20px;flex:none;color:var(--gold);margin-top:2px;}
+.contact-info-row-light .ci svg{width:100%;height:100%;}
+.contact-info-row-light .cl-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:4px;}
+.contact-info-row-light .cl-value{font-size:14.5px;color:var(--forest-deep);}
+.contact-info-row-light .cl-value a{color:var(--forest-deep);text-decoration:underline;text-underline-offset:2px;}
+
+/* ============ SECTION HEADERS ============ */
+.section-head{max-width:640px;margin-bottom:64px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head.center .desc{text-align:center;}
+.section-head h2{font-size:clamp(28px,3.4vw,42px);}
+.section-head .desc{margin-top:20px;color:var(--ink-soft);font-size:16px;}
+
+.bg-alt{background:var(--bg-alt);}
+
+/* ============ PROMO VIDEO ============ */
+.promo-video-section{background:var(--bg);padding:100px 0 112px;}
+@media (max-width:900px){.promo-video-section{padding:70px 0 76px;}}
+.promo-video-frame{
+  max-width:920px;margin:0 auto;position:relative;
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);border:1px solid var(--line-strong);
+  background:var(--forest-deep);
+}
+.promo-video-frame video{width:100%;display:block;aspect-ratio:16/9;background:#0A2A20;}
+
+/* ============ SERVICES ACCORDION ============ */
+.services-list{border-top:1px solid var(--line-strong);}
+.service-cat{border-bottom:1px solid var(--line-strong);}
+.service-cat-head{
+  width:100%;background:none;border:none;text-align:left;
+  display:flex;align-items:center;gap:22px;padding:30px 6px;
+}
+.service-cat-head:hover .cat-title{color:var(--blue);}
+.cat-icon{width:44px;height:44px;flex:none;color:var(--forest);}
+.cat-icon svg{width:100%;height:100%;}
+.cat-text{flex:1;display:flex;flex-direction:column;gap:6px;}
+.cat-desc{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:400;color:var(--ink-soft);line-height:1.5;max-width:640px;}
+.cat-num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-faint);letter-spacing:0.1em;}
+.cat-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--forest-deep);transition:color .25s ease;}
+.cat-plus{width:22px;height:22px;flex:none;position:relative;}
+.cat-plus::before,.cat-plus::after{content:"";position:absolute;background:var(--forest);transition:transform .3s var(--ease);}
+.cat-plus::before{left:0;top:50%;width:100%;height:1.5px;transform:translateY(-50%);}
+.cat-plus::after{top:0;left:50%;width:1.5px;height:100%;transform:translateX(-50%);}
+.service-cat.open .cat-plus::after{transform:translateX(-50%) rotate(90deg);opacity:0;}
+
+.service-cat-body{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);}
+.service-cat.open .service-cat-body{max-height:600px;}
+.service-tags{display:flex;flex-wrap:wrap;gap:10px;padding:6px 6px 34px 66px;}
+@media (max-width:640px){.service-tags{padding-left:6px;}}
+.service-tags span{
+  font-size:13.5px;color:var(--ink-soft);
+  padding:9px 16px;border:1px solid var(--line-strong);border-radius:20px;
+  background:var(--panel);
+}
+
+/* ============ INDUSTRIES ============ */
+.industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong);}
+@media (max-width:900px){.industry-grid{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:640px){.industry-grid{grid-template-columns:repeat(2,1fr);}}
+.industry-card{
+  background:var(--panel);padding:36px 24px;display:flex;flex-direction:column;gap:18px;
+  transition:background .3s ease, opacity .6s var(--ease), transform .6s var(--ease);
+  opacity:0;transform:translateY(26px) rotate(-4deg);
+}
+.industry-card.is-visible{opacity:1;transform:translateY(0) rotate(0deg);}
+.industry-card:hover{background:var(--bg-alt);}
+.industry-card .ic{width:30px;height:30px;color:var(--blue);}
+.industry-card .ic svg{width:100%;height:100%;}
+.industry-card span{font-size:14px;color:var(--ink-soft);font-weight:500;line-height:1.4;}
+
+/* ============ WHY CHOOSE ============ */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);}
+@media (max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.why-grid{grid-template-columns:1fr;}}
+.why-card{background:var(--forest-deep);color:#fff;padding:40px 32px;min-height:200px;display:flex;flex-direction:column;gap:16px;justify-content:flex-end;position:relative;}
+.why-card .wi{width:26px;height:26px;color:var(--gold);}
+.why-card .wi svg{width:100%;height:100%;}
+.why-card h3{color:#fff;font-size:18px;font-weight:600;}
+.why-card p{color:rgba(255,255,255,0.62);font-size:13.5px;margin-top:4px;}
+
+/* ============ DELIVERABLES ============ */
+.deliv-list{display:flex;flex-direction:column;border-top:1px solid var(--line-strong);}
+.deliv-group{border-bottom:1px solid var(--line-strong);}
+.deliv-group-head{
+  width:100%;background:none;border:none;text-align:left;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 4px;
+}
+.deliv-group-head:hover .deliv-group-title{color:var(--blue);}
+.deliv-group-title{font-family:'Fraunces',serif;font-size:19px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--forest-deep);transition:color .25s ease;}
+.deliv-group-plus{width:20px;height:20px;flex:none;position:relative;}
+.deliv-group-plus::before,.deliv-group-plus::after{content:"";position:absolute;background:var(--forest);transition:transform .3s var(--ease);}
+.deliv-group-plus::before{left:0;top:50%;width:100%;height:1.5px;transform:translateY(-50%);}
+.deliv-group-plus::after{top:0;left:50%;width:1.5px;height:100%;transform:translateX(-50%);}
+.deliv-group.open .deliv-group-plus::after{transform:translateX(-50%) rotate(90deg);opacity:0;}
+.deliv-group-body{max-height:0;overflow:hidden;transition:max-height .6s var(--ease);}
+.deliv-group.open .deliv-group-body{max-height:6000px;}
+.deliv-card{
+  background:var(--panel);border-bottom:1px solid var(--line-strong);
+  display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;
+  padding:48px 4px;
+  opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease), transform .8s var(--ease);
+}
+.deliv-card.is-visible{opacity:1;transform:translateY(0);}
+.deliv-card:nth-child(even) .deliv-thumb{order:2;}
+.deliv-card:nth-child(even) .deliv-text{order:1;}
+@media (max-width:800px){
+  .deliv-card{grid-template-columns:1fr;gap:20px;padding:34px 0;}
+  .deliv-card:nth-child(even) .deliv-thumb{order:0;}
+  .deliv-card:nth-child(even) .deliv-text{order:0;}
+}
+.deliv-text{display:flex;flex-direction:column;}
+.deliv-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);display:inline-block;margin-bottom:10px;}
+.deliv-label{font-family:'Fraunces',serif;font-size:19px;font-weight:600;color:var(--forest-deep);margin-bottom:10px;}
+.deliv-desc{font-size:14px;line-height:1.7;color:var(--ink-soft);max-width:480px;}
+.deliv-thumb{aspect-ratio:4/3;position:relative;overflow:hidden;background:var(--bg-alt);border:1px solid var(--line-strong);display:flex;align-items:center;justify-content:center;}
+.deliv-thumb img{width:100%;height:100%;object-fit:contain;display:block;}
+.deliv-result-cap{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:14px;}
+
+/* ============ PROCESS ============ */
+.process-list{border-top:none;position:relative;padding-left:30px;}
+.process-item{position:relative;padding:26px 0 26px 30px;border-bottom:1px solid var(--line-strong);}
+.process-item::before{content:"";position:absolute;left:-5px;top:32px;width:10px;height:10px;border-radius:50%;background:var(--line-strong);border:2px solid var(--bg);transition:background .5s ease .1s;}
+.process-item.reveal.is-visible::before{background:var(--gold);}
+.process-item:not(:last-child)::after{content:"";position:absolute;left:0;top:42px;width:1px;height:calc(100% - 10px);background:var(--line-strong);}
+.process-body h3{font-size:19px;margin-bottom:8px;}
+.process-body p{color:var(--ink-soft);font-size:14.5px;max-width:560px;}
+.process-thumb{margin-top:18px;display:inline-flex;flex-direction:column;gap:8px;}
+.process-thumb img{width:160px;height:120px;object-fit:cover;border:1px solid var(--line-strong);background:var(--bg-alt);}
+.process-thumb-cap{font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);}
+@media (max-width:640px){.process-list{padding-left:22px;}.process-item{padding:22px 0 22px 22px;}}
+
+/* ============ CTA BANNER / REQUEST A CONSULTATION ============ */
+.cta-banner{
+  background:linear-gradient(120deg,#124560, #123C2E 70%);
+  color:#fff;padding:96px 0;text-align:center;position:relative;overflow:hidden;
+}
+.cta-banner h2{color:#fff;font-size:clamp(26px,3.6vw,40px);max-width:680px;margin:0 auto;}
+.cta-banner p{color:rgba(255,255,255,0.78);max-width:600px;margin:22px auto 0;font-size:16px;text-align:center;}
+.cta-banner .btn{margin-top:38px;}
+.cta-contact-links{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin:30px auto 10px;font-size:15px;color:rgba(255,255,255,0.85);}
+.cta-contact-links a{color:#fff;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:4px;}
+.cta-contact-links a:hover{color:var(--gold);}
+
+.consultation-form{max-width:560px;margin:44px auto 0;text-align:left;}
+.consultation-field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media (max-width:560px){.consultation-field-row{grid-template-columns:1fr;}}
+.consultation-field{margin-bottom:18px;}
+.consultation-field label{display:block;font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px;font-family:'IBM Plex Mono',monospace;}
+.consultation-field input,.consultation-field textarea{
+  width:100%;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.06);
+  padding:14px 16px;font-family:'Inter',sans-serif;font-size:14.5px;color:#fff;
+  border-radius:var(--radius);transition:border-color .25s ease,background .25s ease;
+}
+.consultation-field input::placeholder,.consultation-field textarea::placeholder{color:rgba(255,255,255,0.4);}
+.consultation-field input:focus,.consultation-field textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,0.1);}
+.consultation-form .btn{margin-top:6px;width:100%;}
+.consultation-note{margin-top:16px;font-size:12.5px;color:rgba(255,255,255,0.6);text-align:center;}
+.consultation-note a{color:var(--gold);text-decoration:underline;text-underline-offset:2px;}
+
+/* ============ CONTACT ============ */
+.contact-single{max-width:460px;margin:0 auto;}
+.contact-info-card{background:var(--forest-deep);color:#fff;padding:44px 40px;}
+.contact-info-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.14);}
+.contact-info-row:last-of-type{border-bottom:none;}
+.contact-info-row .ci{width:20px;height:20px;flex:none;color:var(--gold);margin-top:2px;}
+.contact-info-row .ci svg{width:100%;height:100%;}
+.contact-info-row .cl-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px;}
+.contact-info-row .cl-value{font-size:14.5px;color:#fff;}
+.contact-info-row .cl-value a{color:#fff;text-decoration:underline;text-underline-offset:2px;}
+.social-row{display:flex;gap:14px;margin-top:20px;}
+.social-icon-btn{
+  width:46px;height:46px;display:flex;align-items:center;justify-content:center;
+  border:1px solid transparent;border-radius:50%;color:#fff;
+  transition:transform .25s ease, filter .25s ease;
+}
+.social-icon-btn:hover{transform:translateY(-2px);filter:brightness(1.08);}
+.social-icon-btn.linkedin-icon{background:#0A66C2;}
+.social-icon-btn.whatsapp-icon{background:#25D366;}
+
+/* ============ LEGAL OVERLAYS ============ */
+.legal-overlay{
+  display:none;position:fixed;inset:0;z-index:2000;background:var(--bg);
+  flex-direction:column;
+}
+.legal-overlay.open{display:flex;}
+.legal-overlay-bar{border-bottom:1px solid var(--line);background:rgba(250,252,250,0.92);backdrop-filter:blur(10px);flex:none;}
+.legal-overlay-bar-inner{height:70px;display:flex;align-items:center;}
+.legal-close{background:none;border:none;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--forest-deep);display:inline-flex;align-items:center;gap:8px;padding:8px 0;}
+.legal-close:hover{color:var(--blue);}
+.legal-overlay-scroll{flex:1;overflow-y:auto;padding:56px 0 100px;}
+.legal-doc{max-width:760px;}
+.legal-doc h1{font-size:clamp(30px,4vw,44px);margin-bottom:8px;}
+.legal-updated{color:var(--ink-faint);font-size:12.5px;margin-bottom:40px;}
+.legal-doc h2{font-size:19px;margin-top:40px;margin-bottom:14px;color:var(--forest-deep);}
+.legal-doc h2:first-of-type{margin-top:0;}
+.legal-doc h3{font-family:'Fraunces',serif;font-size:15.5px;font-weight:600;margin-top:22px;margin-bottom:8px;color:var(--forest-deep);}
+.legal-doc p{color:var(--ink-soft);font-size:14.5px;line-height:1.75;margin-bottom:14px;}
+.legal-doc ul{margin:0 0 14px 0;}
+.legal-doc li{position:relative;padding-left:18px;color:var(--ink-soft);font-size:14.5px;line-height:1.75;margin-bottom:8px;}
+.legal-doc li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;background:var(--gold);}
+.legal-kv{border:1px solid var(--line-strong);margin:0 0 20px 0;}
+.legal-kv > div{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid var(--line-strong);}
+.legal-kv > div:last-child{border-bottom:none;}
+.legal-kv dt{margin:0;padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--ink-faint);background:var(--bg-alt);border-right:1px solid var(--line-strong);}
+.legal-kv dd{margin:0;padding:12px 16px;font-size:13.5px;color:var(--ink-soft);}
+@media (max-width:640px){.legal-kv > div{grid-template-columns:1fr;}.legal-kv dt{border-right:none;border-bottom:1px solid var(--line-strong);}}
+.legal-placeholder{background:rgba(176,141,87,0.18);color:var(--forest-deep);padding:1px 5px;border:1px dashed var(--gold);font-size:0.94em;}
+.legal-callout{margin:20px 0;padding:22px 26px;border-left:3px solid var(--gold);background:var(--bg-alt);}
+.legal-callout p{margin:0;font-size:14px;}
+
+/* ============ FOOTER ============ */
+footer{background:var(--forest-deep);color:rgba(255,255,255,0.65);padding:80px 0 32px;}
+.footer-about{max-width:760px;margin-bottom:56px;}
+.founder-bio{margin-top:14px;font-size:13.5px;line-height:1.75;color:rgba(255,255,255,0.62);max-width:640px;}
+.founder-bio strong{color:#fff;font-weight:600;}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,0.12);}
+@media (max-width:800px){.footer-grid{grid-template-columns:1fr 1fr;row-gap:40px;}}
+.footer-brand .brand-name{color:#fff;}
+.footer-brand-row{display:flex;align-items:center;gap:12px;}
+.footer-brand-row .brand-mark{width:34px;height:34px;flex:none;}
+.footer-brand p{margin-top:18px;font-size:13.5px;line-height:1.7;max-width:340px;color:rgba(255,255,255,0.55);}
+.founder-name{font-family:'Fraunces',serif;font-weight:600;color:#fff;font-size:14.5px;}
+.founder-title{color:rgba(255,255,255,0.6);font-size:12.5px;}
+.footer-col h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:20px;font-weight:500;}
+.footer-col li{margin-bottom:12px;}
+.footer-col a{font-size:14px;color:rgba(255,255,255,0.72);transition:color .2s ease;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;font-size:12.5px;flex-wrap:wrap;gap:12px;}
+.footer-bottom .legal{display:flex;gap:24px;}
+
+/* Back to top / scroll cue */
+.scroll-cue{position:absolute;bottom:36px;left:32px;display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.55);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;}
+.scroll-cue .line{width:1px;height:34px;background:rgba(255,255,255,0.35);position:relative;overflow:hidden;}
+.scroll-cue .line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--gold);animation:scrolldrop 2.2s ease-in-out infinite;}
+@keyframes scrolldrop{0%{top:-100%;}50%{top:0%;}100%{top:100%;}}
+@media (max-width:640px){.scroll-cue{display:none;}}
+
+/* Focus visibility */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid var(--blue);outline-offset:3px;
+}
+
+
+/* Groundwater service page */
+body{padding-top:82px}section[id]{scroll-margin-top:90px}
+.gw-hero{background:linear-gradient(135deg,#0A2A20 4%,#123C2E 50%,#124560 100%);padding:106px 0 80px;color:#fff}
+.gw-hero .eyebrow{color:#caaa73}.gw-hero h1{max-width:940px;font-size:clamp(36px,5.4vw,64px);color:#fff}.gw-hero p{max-width:790px;font-size:18px;color:rgba(255,255,255,.83);margin-top:25px;line-height:1.75;text-align:left}.gw-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px}.gw-proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:65px}.gw-proof span{border:1px solid rgba(255,255,255,.25);font:11px 'IBM Plex Mono',monospace;letter-spacing:.06em;padding:10px 14px;color:#e9efec}
+main h2{font-size:clamp(30px,3.5vw,43px);max-width:800px;margin-bottom:20px}main h3{font-size:21px;margin-bottom:12px}main p{font-size:16px;color:var(--ink-soft);line-height:1.8;margin:0 0 18px;text-align:left}.gw-intro{max-width:760px;margin-bottom:36px}.gw-two{display:grid;grid-template-columns:1.2fr .8fr;align-items:start;gap:60px}.gw-note{border-left:3px solid var(--gold);padding:20px;background:var(--bg-alt);font-size:14px;line-height:1.8;color:var(--ink-soft)}.gw-map{margin:0;background:#fff;border:1px solid var(--line-strong);padding:14px;box-shadow:var(--shadow)}.gw-map img{max-height:420px;width:100%;object-fit:contain}.gw-map figcaption{font:11px 'IBM Plex Mono',monospace;color:var(--ink-faint);padding:14px 4px 4px}.gw-map.gw-image-missing::before{content:'Groundwater assessment illustration';display:block;padding:90px 20px;text-align:center;color:var(--ink-faint)}
+.gw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong)}.gw-step{background:#fff;padding:32px}.gw-stepnum{font-size:11px;letter-spacing:.07em;color:var(--gold);display:block;margin-bottom:18px}.gw-step p{font-size:14px;margin:0}.gw-tags{display:flex;flex-wrap:wrap;gap:12px}.gw-tags span{border:1px solid var(--line-strong);background:var(--bg-alt);padding:13px 19px;font-size:14px;color:var(--forest)}.gw-deliver{display:grid;grid-template-columns:1fr 1fr;gap:12px}.gw-deliver>div{background:#fff;padding:18px 20px;font-size:14px;display:flex;gap:14px;align-items:center}.gw-deliver span{color:var(--forest);font-size:20px}.gw-apps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.gw-apps article{border:1px solid var(--line-strong);padding:28px}.gw-apps p{font-size:14px;margin:0}.gw-faq{max-width:940px;border-top:1px solid var(--line-strong)}.gw-faq details{border-bottom:1px solid var(--line-strong);padding:21px 4px}.gw-faq summary{cursor:pointer;font-weight:600;color:var(--forest-deep);font-size:16px}.gw-faq details p{padding-top:16px;font-size:14px;margin:0}.gw-hero .eyebrow::before{background:var(--gold)}
+@media(max-width:900px){.gw-two{grid-template-columns:1fr;gap:35px}.gw-steps,.gw-apps{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){body{padding-top:70px}.gw-hero{padding:70px 0 60px}.gw-hero p{font-size:16px}.gw-steps,.gw-apps,.gw-deliver{grid-template-columns:1fr}.gw-proof{margin-top:40px}}
+</style></head><body><header id="site-header"><div class="nav-inner"><a href="/" class="brand" aria-label="Vasu Terra Solutions home"><span class="brand-mark"><img src="assets/vasu-terra-solutions-logo.webp" alt="Vasu Terra Solutions logo" width="50" height="62"></span><span class="brand-text"><span class="brand-name">Vasu Terra Solutions</span><span class="brand-sub">Where Earth Observation Meets Innovation</span></span></a><nav class="primary-nav" aria-label="Primary"><a href="/">Home</a><a href="#overview">Overview</a><a href="#methodology">Methodology</a><a href="#deliverables">Deliverables</a><a href="#faqs">FAQs</a></nav><div class="nav-cta"><a href="#consultation" class="btn btn-outline-dark">Request a Consultation</a></div><button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></div></header><div class="mobile-nav" id="mobileNav"><a href="/">Home</a><a href="#overview">Overview</a><a href="#methodology">Methodology</a><a href="#deliverables">Deliverables</a><a href="#faqs">FAQs</a><a href="#consultation">Request a Consultation</a></div><main><section class="gw-hero"><div class="wrap"><div class="eyebrow">Water Resources &amp; Hydrogeology / Service</div><h1>Groundwater Potential Zone Mapping Services in India</h1><p>Scientifically grounded GIS and remote-sensing assessment to identify and prioritise areas with favourable groundwater potential. Supporting watershed management, artificial recharge planning, agricultural water decisions and regional hydrogeological studies.</p><div class="gw-actions"><a class="btn btn-primary" href="#consultation">Discuss a project</a><a class="btn btn-outline-light" href="#methodology">Explore methodology</a></div><div class="gw-proof"><span>GIS &amp; Remote Sensing</span><span>Site-specific model selection</span><span>Validation where data permit</span><span>Planning-ready outputs</span></div></div></section>
+<section class="section-pad" id="overview"><div class="wrap gw-two"><div><span class="eyebrow">Service overview</span><h2>From scattered indicators to an actionable groundwater picture</h2><p>Groundwater occurrence is influenced by geology, geomorphology, slope, drainage, fractures, soil, rainfall and land use. No single data source fully characterises local conditions. VTS combines relevant evidence layers within a GIS framework to classify a study area into relative groundwater potential zones.</p><p>These maps support district and watershed planning, recharge screening, agricultural water management, baseline studies and prioritisation of field investigations.</p><div class="gw-note"><strong>Technical limitation:</strong> A groundwater potential map is a regional decision-support product. It does not establish guaranteed well yield or replace detailed hydrogeological and geophysical investigation for final borewell siting.</div></div><figure class="gw-map"><img src="assets/groundwater-recharge-zone-map.webp" alt="Representative groundwater recharge zone mapping output" loading="lazy" decoding="async" onerror="this.style.display='none';this.parentNode.classList.add('gw-image-missing')"><figcaption>Representative groundwater-related thematic output. Illustrative, not a site-specific prediction.</figcaption></figure></div></section>
+<section class="section-pad bg-alt" id="methodology"><div class="wrap"><span class="eyebrow">Our methodology</span><h2>How the model is developed</h2><p class="gw-intro">The workflow is adapted to terrain, study scale, available datasets and the decision the map must support.</p><div class="gw-steps"><article class="gw-step"><span class="mono gw-stepnum">01 — Scope</span><h3>Define the decision</h3><p>Confirm study boundary, mapping scale, purpose, classification requirements and available ground observations.</p></article><article class="gw-step"><span class="mono gw-stepnum">02 — Data</span><h3>Compile spatial inputs</h3><p>Acquire suitable satellite imagery, DEM, rainfall, geology, geomorphology, soils and well records.</p></article><article class="gw-step"><span class="mono gw-stepnum">03 — Layers</span><h3>Prepare thematic layers</h3><p>Generate and quality-check slope, drainage density, lineament density and land-use layers in a consistent spatial reference.</p></article><article class="gw-step"><span class="mono gw-stepnum">04 — Model</span><h3>Integrate evidence</h3><p>Select weighted overlay, AHP, fuzzy methods or validated machine-learning methods according to study needs.</p></article><article class="gw-step"><span class="mono gw-stepnum">05 — Validate</span><h3>Check against observations</h3><p>Where available, compare predictions with well yield, water levels, borehole records and site evidence.</p></article><article class="gw-step"><span class="mono gw-stepnum">06 — Deliver</span><h3>Translate findings into decisions</h3><p>Produce classified maps, GIS datasets, area statistics, methodology, interpretation and limitations.</p></article></div></div></section><section class="section-pad" id="layers"><div class="wrap"><span class="eyebrow">Typical inputs</span><h2>Thematic layers considered</h2><p class="gw-intro">Inputs are selected on scientific relevance, scale and data reliability—not every layer is required for every project.</p><div class="gw-tags"><span>Geology</span><span>Geomorphology</span><span>Lineament density</span><span>Drainage density</span><span>Slope and elevation</span><span>Soil characteristics</span><span>Rainfall</span><span>Land use / land cover</span><span>Topographic wetness</span><span>Aquifer information</span><span>Well inventory</span><span>Water-level records</span></div></div></section><section class="section-pad bg-alt" id="deliverables"><div class="wrap"><span class="eyebrow">Project deliverables</span><h2>What your organisation receives</h2><p class="gw-intro">Scope and formats are agreed at the proposal stage; outputs can be tailored to planning, engineering, government or research requirements.</p><div class="gw-deliver"><div><span aria-hidden="true">✓</span>Groundwater potential zone classification map</div><div><span aria-hidden="true">✓</span>Prepared thematic maps and GIS layers</div><div><span aria-hidden="true">✓</span>Criteria, ranks and weighting documentation</div><div><span aria-hidden="true">✓</span>Validation analysis (where data permit)</div><div><span aria-hidden="true">✓</span>Priority-zone statistics and area summaries</div><div><span aria-hidden="true">✓</span>Technical interpretation and limitations report</div><div><span aria-hidden="true">✓</span>Print-ready maps and spatial deliverable files</div><div><span aria-hidden="true">✓</span>Planning recommendations for further investigation</div></div></div></section><section class="section-pad" id="applications"><div class="wrap"><span class="eyebrow">Applications</span><h2>Where groundwater mapping supports decisions</h2><div class="gw-apps"><article><h3>Watershed development</h3><p>Prioritise sites for conservation, field assessment and local water-resource planning.</p></article><article><h3>Artificial recharge planning</h3><p>Screen areas for further site investigation before placing recharge structures.</p></article><article><h3>Agricultural water planning</h3><p>Understand relative groundwater favourability for watershed and irrigation decisions.</p></article><article><h3>Government programmes</h3><p>Support transparent district, block and watershed-scale planning.</p></article><article><h3>Infrastructure feasibility</h3><p>Include groundwater context in broader feasibility and environmental studies.</p></article><article><h3>Research and monitoring</h3><p>Develop reproducible spatial baselines for later validation and updates.</p></article></div></div></section><section class="section-pad bg-alt" id="faqs"><div class="wrap"><span class="eyebrow">Frequently asked questions</span><h2>Groundwater mapping FAQs</h2><div class="gw-faq"><details><summary>What is groundwater potential zone mapping?</summary><p>It is a regional GIS-based assessment combining geological, geomorphological, terrain, drainage, rainfall, land use and, where available, field indicators to classify relative groundwater potential.</p></details><details><summary>Which datasets are used?</summary><p>Potential inputs include geology, geomorphology, lineament and drainage density, slope, soil, rainfall, land-use/land-cover, aquifer and well data. The final selection depends on local conditions and data quality.</p></details><details><summary>Can this identify an exact borewell location?</summary><p>No. Regional potential maps support screening and prioritisation, but final borewell siting requires site-specific hydrogeological and, where appropriate, geophysical investigation.</p></details><details><summary>Can well records be used for validation?</summary><p>Yes. Reliable well yield, groundwater level and borehole records can help test how well the classified zones reflect observed conditions.</p></details><details><summary>What do you need for a quotation?</summary><p>Share the area-of-interest boundary or location, approximate area, intended use, scale, available data, expected deliverables and timeline.</p></details></div></div></section></main><section class="cta-banner" id="consultation">
+<div class="wrap">
+<span class="eyebrow" style="justify-content:center;color:#B08D57;">Get Started</span>
+<h2>Discuss Your Groundwater Mapping Requirement</h2>
+<p>Share your study location, area, available groundwater records and project objectives. Vasu Terra Solutions will help define a suitable assessment scope and deliverables.</p>
+<div class="cta-contact-links">
+<a href="mailto:vasuterrasolutions@gmail.com">vasuterrasolutions@gmail.com</a>
+<span aria-hidden="true">|</span>
+<a href="https://www.linkedin.com/in/vasu-terra-solutions-a00532428/" rel="noopener" target="_blank">LinkedIn</a>
+</div>
+<form action="https://formsubmit.co/vasuterrasolutions@gmail.com" class="consultation-form" id="consultationForm" method="POST">
+<input name="_subject" type="hidden" value="Groundwater potential zone mapping enquiry — Vasu Terra Solutions"/>
+<input name="_template" type="hidden" value="table"/>
+<input name="_captcha" type="hidden" value="false"/>
+<div class="consultation-field-row">
+<div class="consultation-field"><label for="c-name">Name</label><input id="c-name" name="Name" placeholder="Your full name" required="" type="text"/></div>
+<div class="consultation-field"><label for="c-institution">Institution</label><input id="c-institution" name="Institution" placeholder="Company, agency, or institution" required="" type="text"/></div>
+</div>
+<div class="consultation-field-row">
+<div class="consultation-field"><label for="c-email">Email</label><input id="c-email" name="Email" placeholder="you@organization.com" required="" type="email"/></div>
+<div class="consultation-field"><label for="c-mobile">Mobile Number</label><input id="c-mobile" name="Mobile" placeholder="+91 XXXXX XXXXX" required="" type="tel"/></div>
+</div>
+<div class="consultation-field">
+<label for="c-description">Description</label>
+<textarea id="c-description" name="Description" placeholder="Study location, area, objectives, available data, and expected timeline" required="" rows="4"></textarea>
+</div>
+<button class="btn btn-primary" id="consultationSubmitBtn" type="submit">Request a Consultation</button>
+</form>
+</div>
+</section><footer id="contact">
+<div class="wrap">
+<div class="footer-about">
+<div class="social-row">
+<a aria-label="Connect on LinkedIn" class="social-icon-btn linkedin-icon" href="https://www.linkedin.com/company/vasu-terra-solutions" rel="noopener" target="_blank" title="Connect on LinkedIn">
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"></path></svg>
+</a>
+<a aria-label="Chat on WhatsApp" class="social-icon-btn whatsapp-icon" href="https://wa.me/918149423884?text=Hi%20Vasu%20Terra%20Solutions%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services." rel="noopener" target="_blank" title="Chat on WhatsApp">
+<svg fill="currentColor" height="24" viewbox="0 0 24 24" width="24"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.87 11.88L4 20l4.24-1.11a7.9 7.9 0 0 0 3.8.97h.01a7.94 7.94 0 0 0 5.55-13.54ZM12.05 18.4a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.6 6.6 0 1 1 5.59 3.09Zm3.62-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.51.64-.62.77-.23.15-.42.05a5.4 5.4 0 0 1-1.59-.98 5.96 5.96 0 0 1-1.1-1.37c-.12-.2 0-.31.09-.41s.2-.23.29-.35a1.3 1.3 0 0 0 .2-.33.36.36 0 0 0 0-.35c-.05-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.38a.72.72 0 0 0-.53.25 2.2 2.2 0 0 0-.69 1.64 3.8 3.8 0 0 0 .8 2.03 8.7 8.7 0 0 0 3.34 2.95c.47.2.83.32 1.11.41a2.67 2.67 0 0 0 1.23.08c.38-.06 1.17-.48 1.33-.94s.17-.86.12-.94-.18-.14-.37-.24Z"></path></svg>
+</a>
+</div>
+</div>
+<div class="footer-grid">
+<div class="footer-col">
+<h4>Company</h4>
+<ul><li><a href="#" onclick="openLegal('about-us-overlay'); return false;">About Us</a></li><li><a href="/#services">Services</a></li><li><a href="/#industries">Industries</a></li><li><a href="/#contact">Contact</a></li></ul>
+</div>
+<div class="footer-col">
+<h4>Expertise</h4>
+<ul><li><a href="/#services">Water &amp; Hydrogeology</a></li><li><a href="/#services">GIS &amp; Remote Sensing</a></li><li><a href="/#services">Environmental Consulting</a></li><li><a href="/#services">Site Suitability</a></li></ul>
+</div>
+<div class="footer-col">
+<h4>Legal</h4>
+<ul><li><a href="#" onclick="openLegal('privacy-overlay'); return false;">Privacy Policy</a></li><li><a href="#" onclick="openLegal('terms-overlay'); return false;">Terms &amp; Conditions</a></li></ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© <span id="yearNow">2026</span> Vasu Terra Solutions. All rights reserved.</span>
+<span class="legal mono">19.9975°N · 73.7898°E</span>
+</div>
+</div>
+</footer><div aria-label="About Us" aria-modal="true" class="legal-overlay" id="about-us-overlay" role="dialog">
+<div class="legal-overlay-bar">
+<div class="wrap legal-overlay-bar-inner">
+<button class="legal-close" onclick="closeLegal('about-us-overlay')">← Back to site</button>
+</div>
+</div>
+<div class="legal-overlay-scroll">
+<div class="wrap legal-doc">
+<h1>About Us</h1>
+<div class="about-founders">
+<div class="about-founders-heading">Our Team</div>
+<p class="founder-bio"><strong>Dr. Priyamvada M. Dhage</strong> — Geospatial Researcher and RS &amp; GIS Specialist with a PhD in Soil and Water Conservation Engineering from JNKVV Jabalpur. She integrates satellite data, GIS-based resource assessment and hydrological analysis to support groundwater potential mapping, recharge-site identification and sustainable land and water management. Her training includes ISRO's Regional Remote Sensing Centre and Can Tho University, Vietnam, and she has worked on research with ISRO, ICAR and agricultural universities. She is currently a Senior Research Fellow at the College of Agriculture, Shivajinagar, Pune.</p>
+<p class="founder-bio"><strong>Mr. Vinod Kumar</strong> — Hydrogeologist with over 9 years of professional and research experience in groundwater assessment, hydrological studies, hydrochemical analysis and GIS-based investigations. He has worked at the National Institute of Hydrology (NIH), Roorkee, and is currently Project Scientist-II, contributing to groundwater modelling for the Chambal and Son river basins. His software expertise includes Visual MODFLOW Flex, ArcGIS, QGIS and PHREEQC.</p>
+<p class="founder-bio"><strong>Mr. Manas Dhage</strong> — Business Development and Client Relations. Brings over 15 years of industry experience building partnerships and driving growth for technology and infrastructure solution providers.</p>
+<div class="about-contact-rows">
+<div class="contact-info-row-light">
+<span class="ci"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="14" rx="1" width="18" x="3" y="5"></rect><path d="M3 6l9 7 9-7"></path></svg></span>
+<div><div class="cl-label">Company Email</div><div class="cl-value"><a href="mailto:vasuterrasolutions@gmail.com">vasuterrasolutions@gmail.com</a></div></div>
+</div>
+<div class="contact-info-row-light">
+<span class="ci"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.8-3.5 3.6-5.5 7-5.5s6.2 2 7 5.5"></path></svg></span>
+<div><div class="cl-label">Dr. Priyamvada M. Dhage</div><div class="cl-value"><a href="mailto:priyamvada.m@vasuterrasolutions.com">priyamvada.m@vasuterrasolutions.com</a></div></div>
+</div>
+<div class="contact-info-row-light">
+<span class="ci"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"></path></svg></span>
+<div><div class="cl-label">Phone</div><div class="cl-value">+91-8149423884</div></div>
+</div>
+<div class="contact-info-row-light">
+<span class="ci"><svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"></path><circle cx="12" cy="9" r="2.4"></circle></svg></span>
+<div><div class="cl-label">Office</div><div class="cl-value">Mumbai, Maharashtra, India</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div aria-label="Privacy Policy" aria-modal="true" class="legal-overlay" id="privacy-overlay" role="dialog">
+<div class="legal-overlay-bar">
+<div class="wrap legal-overlay-bar-inner">
+<button class="legal-close" onclick="closeLegal('privacy-overlay')">← Back to site</button>
+</div>
+</div>
+<div class="legal-overlay-scroll">
+<div class="wrap legal-doc">
+<h1>Privacy Policy</h1>
+<p class="legal-updated mono">Last updated: <span class="legal-placeholder">18/08/2026</span></p>
+<h2>1. Preamble</h2>
+<p>This Privacy Policy ("Policy") explains how Vasu Terra Solutions ("Vasu Terra Solutions", the "Firm", "we", "us" or "our") collects, uses, stores, shares, retains and protects personal data. Under the Digital Personal Data Protection Act, 2023 ("DPDP Act") and the Digital Personal Data Protection Rules, 2025 ("DPDP Rules"), together referred to as "Applicable Law", we act as the Data Fiduciary. This Policy applies to individuals ("Data Principals", "you" or "your") who visit our website, send us an enquiry, engage our GIS, remote-sensing, environmental consulting or related professional services, or otherwise interact with us.</p>
+<p>When you give us personal data through our website, by email, telephone, in writing or during a professional engagement, you acknowledge that you have read and understood this Policy. Where we rely on your consent, this Policy and the specific consent notice shown when your data is collected together provide the notice required under Section 5 of the DPDP Act.</p>
+<h2>2. Identity and Contact Details of the Data Fiduciary</h2>
+<p>Vasu Terra Solutions is the Data Fiduciary responsible for the personal data covered by this Policy. Our details are:</p>
+<dl class="legal-kv">
+<div><dt>Legal / Trading Name</dt><dd>Vasu Terra Solutions</dd></div>
+<div><dt>Nature of Entity</dt><dd>Sole Proprietorship</dd></div>
+<div><dt>Registered / Business Address</dt><dd>12A, Gokuldham Apartments, Kashiko Nagar, Krushnaban Colony, CIDCO, Nashik - 422009</dd></div>
+<div><dt>Business E-mail</dt><dd><a href="mailto:vasuterrasolutions@gmail.com">vasuterrasolutions@gmail.com</a></dd></div>
+<div><dt>Telephone</dt><dd>+91 81494 23884</dd></div>
+<div><dt>Website</dt><dd><a href="https://vasuterrasolution.com/" rel="noopener" target="_blank">https://vasuterrasolution.com/</a></dd></div>
+</dl>
+<h2>3. Scope and Application</h2>
+<p>This Policy covers personal data relating to: (a) visitors to our website; (b) prospective clients who send enquiries; (c) clients and their authorised representatives; (d) individual vendors, consultants and professional advisers; and (e) any other individual whose personal data we handle in the course of our business. It does not cover information about a company, government body or other organisation unless that information, alone or together with other information, identifies an individual.</p>
+<h2>4. Personal Data We Collect</h2>
+<p>We may collect the following types of personal data directly from you or create them while providing our services:</p>
+<ul>
+<li>Identity and contact details: your name, job title, organisation or employer, country of residence, email address and telephone number;</li>
+<li>Enquiry and project details: the nature of your enquiry, project brief, scope of work, site or area of interest, and related communications;</li>
+<li>Billing and financial details: billing name and address, GST or tax identification details, bank account or payment references, and invoice history. We collect these details only for invoicing and legal compliance;</li>
+<li>Technical and usage information: your IP address, browser and device type, pages visited, access date and time, and similar information generated automatically when you use our website or communicate with us electronically; and</li>
+<li>Other information: any personal data you choose to provide in correspondence, meetings, tender documents or contracts.</li>
+</ul>
+<p>We do not knowingly collect sensitive or special-category personal data beyond what is described above. A project may sometimes include personal data about other people, such as landowners named in survey records provided by a client. In that case, the client is responsible for having the legal authority to share the data with us. Clause 5 below and the indemnity provisions in our Terms and Conditions also apply.</p>
+<h2>5. Special Treatment of Client-Supplied Geospatial Data</h2>
+<p>When providing GIS, remote-sensing and environmental consulting services, clients may give us GIS files, coordinates, maps, survey records, drone or satellite imagery, and other geospatial datasets ("Geospatial Data"). Some Geospatial Data may contain personal data or may be capable of being linked to an individual, such as the coordinates of a private home or a survey record naming a landowner or occupant.</p>
+<p>We apply the following additional safeguards to Geospatial Data:</p>
+<ul>
+<li>only team members who need the data for the relevant project may access it;</li>
+<li>we store it on access-controlled systems, separate from general business records, and use it only for the project for which it was provided unless another use is separately and lawfully authorised;</li>
+<li>we share it only where necessary to deliver the agreed services, such as with a sub-consultant who is bound by confidentiality obligations, or where Applicable Law requires disclosure;</li>
+<li>if it concerns defence installations, critical infrastructure or another regulated category of geospatial information, we handle it in line with the relevant survey and mapping restrictions as well as this Policy; and</li>
+<li>when the retention period in clause 11 ends, we securely delete or anonymise it unless a contract or Applicable Law requires us to keep it longer.</li>
+</ul>
+<p>Clients are responsible for ensuring that any Geospatial Data they provide was lawfully obtained and that they have all rights and permissions needed to share it with us, as explained further in our Terms and Conditions.</p>
+<h2>6. Purpose of Collection and Processing</h2>
+<p>In line with Section 4 of the DPDP Act, we collect and use personal data only for the following purposes:</p>
+<ul>
+<li>to receive, assess and respond to enquiries sent through our website, email or other channels;</li>
+<li>to prepare quotations, proposals and project scopes;</li>
+<li>to set up, manage and deliver projects, including communicating with clients during the work;</li>
+<li>to issue invoices, process payments and maintain financial and accounting records;</li>
+<li>to meet tax, accounting, contractual and other legal obligations; and</li>
+<li>to protect the security, integrity and proper operation of our website and information systems.</li>
+</ul>
+<p>We will not use personal data for a purpose that is incompatible with those listed above unless we obtain fresh consent or have another valid basis under Applicable Law.</p>
+<h2>7. Consent</h2>
+<p>Unless Section 7 of the DPDP Act allows us to process data without consent, we rely on consent that is freely given, specific, informed, unconditional and unambiguous. You may give consent through a clear action, such as ticking a box, submitting a form or otherwise confirming your agreement. Processing without consent may include meeting a legal obligation or using information that you voluntarily provided for a specific purpose without indicating that you did not consent.</p>
+<p>Consent statement shown beside our contact or enquiry form: <em>"By submitting this form, you consent to Vasu Terra Solutions using the information provided to respond to your enquiry in accordance with our Privacy Policy."</em></p>
+<h2>8. Withdrawal of Consent</h2>
+<p>You may withdraw your consent at any time, and the process should be as easy as giving consent, as required by Section 6(4) of the DPDP Act. To withdraw consent, write to our Grievance Officer using the details in clause 15. Please state that you wish to withdraw consent and identify the personal data or processing activity concerned.</p>
+<p>Withdrawing consent does not make any earlier processing unlawful. If you withdraw consent during an ongoing project or while an invoice remains unpaid, we may be unable to continue providing services. As permitted by Section 6(6) of the DPDP Act, we may still keep and use personal data that is reasonably needed to meet existing legal obligations, including invoicing, warranty and statutory record-keeping requirements.</p>
+<h2>9. Disclosure of Personal Data to Third Parties</h2>
+<p>We do not sell personal data. We share it only with the categories of recipients listed below. Depending on the circumstances, a recipient may act as our Data Processor under a written agreement requiring it to follow our instructions and use suitable security measures, or as an independent recipient with its own lawful basis:</p>
+<ul>
+<li>our website-hosting provider, to operate and secure our website;</li>
+<li>our email-service provider, to support business communications;</li>
+<li>our customer relationship management (CRM) provider, to manage enquiries, proposals and client records;</li>
+<li>our payment gateway or payment-processing provider, to process invoices and payments;</li>
+<li>our professional advisers, including auditors, accountants, tax consultants and legal counsel, where access is necessary for their work; and</li>
+<li>regulators, courts, law-enforcement bodies or other government authorities where Applicable Law requires or permits disclosure.</li>
+</ul>
+<p>We do not allow these recipients to use personal data for their own marketing. Each recipient must follow confidentiality and data-protection obligations appropriate to the information it receives.</p>
+<h2>10. Cross-Border and Cloud-Based Data Transfers</h2>
+<p>Some service providers listed in clause 9, including hosting, email, CRM and payment providers, may store or process personal data on cloud systems outside India. We transfer data only to jurisdictions that are not restricted by a Central Government notification under Section 16 of the DPDP Act at the relevant time. We also use contractual and technical safeguards consistent with Applicable Law. If the Central Government introduces restrictions for a jurisdiction, we will comply with them.</p>
+<h2>11. Data Retention</h2>
+<p>We keep personal data only for as long as reasonably needed for the purpose for which it was collected, or for as long as Applicable Law requires. Our usual retention periods are:</p>
+<ul>
+<li>Unsuccessful or abandoned enquiries: up to 3 months after the last contact, after which the data is deleted or anonymised, unless you ask us to delete it earlier or consent to a longer period, for example so we can contact you about future opportunities;</li>
+<li>Completed project records, deliverables and related correspondence: 8–12 weeks after project completion to support contractual, warranty, professional-liability and evidentiary needs;</li>
+<li>Invoices, billing and tax records: for the minimum period required by applicable tax, accounting and company law, currently up to 8 years under Indian tax law and subject to change, or 10 years if longer; and</li>
+<li>Technical and website logs: 12 months for security and diagnostic purposes.</li>
+</ul>
+<p>When the relevant retention period ends, and the data is no longer needed for its original purpose or to comply with Applicable Law, we will delete it and instruct our Data Processors to do the same. This will be done in line with Section 8(7) of the DPDP Act and Rule 8 of the DPDP Rules, including any required advance notice.</p>
+<h2>12. Security Safeguards and Data-Breach Response</h2>
+<p>In line with Section 8(5) of the DPDP Act and Rule 6 of the DPDP Rules, we use reasonable technical and organisational safeguards to protect personal data in our possession or control. These include access controls, encryption in transit where appropriate, role-based and restricted access to Geospatial Data and client records, secure storage arrangements with hosting and cloud providers, and periodic reviews of our safeguards.</p>
+<p>If a personal data breach occurs, we will act without undue delay to contain it and reduce its effects. We will notify the Data Protection Board of India and affected Data Principals in the manner and within the time required by Section 8(6) of the DPDP Act and the DPDP Rules. The notice will include the required information about the breach, its likely impact, and the steps taken or planned to reduce risk.</p>
+<h2>13. Rights of Data Principals</h2>
+<p>Subject to the conditions and exceptions in the DPDP Act, you have the following rights:</p>
+<ul>
+<li>Access: to receive a summary of the personal data we hold about you and how we process it;</li>
+<li>Correction and updating: to ask us to correct inaccurate or misleading data and complete or update data that is incomplete or outdated;</li>
+<li>Erasure: to ask us to delete data that is no longer needed for the purpose for which it was processed, unless Applicable Law requires us to keep it;</li>
+<li>Withdrawal of consent: as explained in clause 8;</li>
+<li>Grievance redressal: to ask us to address a concern about how we process your personal data, as explained in clause 15; and</li>
+<li>Nomination: to nominate another individual to exercise your rights under the DPDP Act if you die or become unable to act, by writing to our Grievance Officer in the manner prescribed by Rule 15 of the DPDP Rules.</li>
+</ul>
+<p>To exercise any of these rights, write to our Grievance Officer using the details in clause 15. We will respond within the time required by Applicable Law and may ask for reasonable information to confirm your identity before acting on your request.</p>
+<h2>14. Children's Privacy</h2>
+<p>Our website and services are intended for businesses, professionals and organisations, not for anyone under eighteen (18) years of age (a "Child" under the DPDP Act). We do not knowingly collect personal data from Children. If we learn that we collected a Child's personal data without verifiable consent from a parent or lawful guardian, we will delete it promptly unless Applicable Law allows us to retain it.</p>
+<h2>15. Grievance Officer and Grievance Redressal Procedure</h2>
+<p>As required by Section 13 of the DPDP Act, we have appointed the following Grievance Officer to handle questions, requests and concerns about this Policy and our use of personal data:</p>
+<dl class="legal-kv">
+<div><dt>Grievance Officer</dt><dd><span class="legal-placeholder">To be appointed</span></dd></div>
+<div><dt>Designation</dt><dd><span class="legal-placeholder">To be completed</span></dd></div>
+<div><dt>E-mail</dt><dd><span class="legal-placeholder">To be completed</span></dd></div>
+<div><dt>Postal Address</dt><dd><span class="legal-placeholder">To be completed</span></dd></div>
+</dl>
+<p>We will acknowledge and respond to grievances within the time required by the DPDP Rules. If you are not satisfied with our response, you may escalate the matter to the Data Protection Board of India in the manner prescribed by the Board.</p>
+<h2>16. Cookies and Analytics</h2>
+<p>Our website currently uses only technologies that are strictly necessary for it to work, such as session handling for form submissions. We do not currently use non-essential cookies, third-party analytics, tracking pixels or advertising technologies, so we do not display a cookie-consent banner. If we introduce any of these technologies later, we will update this section and add a consent banner or similar tool that allows you to accept or reject non-essential cookies before they are used, as required by Applicable Law.</p>
+<h2>17. No Sale of Personal Information</h2>
+<p>We do not sell, rent or trade personal data for money or any other benefit.</p>
+<h2>18. Updates to this Policy</h2>
+<p>We may update this Policy when our practices, services or Applicable Law change. The "Last updated" date at the top shows when the Policy was most recently revised. We will publish material changes on our website with a new date. If a change significantly affects how we use personal data, we will also provide an additional notice, such as by email, where practical. Continuing to use our website or services after the notice means that you acknowledge the updated Policy.</p>
+<h2>19. Governing Law</h2>
+<p>This Policy is governed by Indian law, including the Digital Personal Data Protection Act, 2023, the Digital Personal Data Protection Rules, 2025 and, where applicable, the Information Technology Act, 2000 and the rules made under it.</p>
+<h2>20. Contact Us</h2>
+<p>If you have questions about this Policy or how we handle personal data, contact us using the business email and address in clause 2, or write to the Grievance Officer using the details in clause 15.</p>
+</div>
+</div>
+</div><div aria-label="Terms and Conditions" aria-modal="true" class="legal-overlay" id="terms-overlay" role="dialog">
+<div class="legal-overlay-bar">
+<div class="wrap legal-overlay-bar-inner">
+<button class="legal-close" onclick="closeLegal('terms-overlay')">← Back to site</button>
+</div>
+</div>
+<div class="legal-overlay-scroll">
+<div class="wrap legal-doc">
+<h1>Terms and Conditions</h1>
+<p class="legal-updated mono">Last updated: <span class="legal-placeholder">18-08-2026</span></p>
+<h2>1. Preamble and Acceptance</h2>
+<p>These Terms and Conditions ("Terms") explain the rules for using the Vasu Terra Solutions website (the "Website") and for engaging our geographic information system (GIS), remote-sensing, environmental consulting and related professional services (the "Services"). The Services are provided by <span class="legal-placeholder">Insert Legal Name of Proprietor/Entity</span>, trading as "Vasu Terra Solutions" ("Vasu Terra Solutions", the "Firm", "we", "us" or "our"). Anyone who engages our Services is referred to as the "Client", "you" or "your".</p>
+<p>By using the Website, sending us an enquiry, accepting a proposal or quotation, or otherwise engaging our Services, you agree to these Terms and our Privacy Policy. If you do not agree, please do not use the Website or engage our Services. A signed engagement letter, statement of work or project-specific agreement (an "Engagement Agreement") may add to or change these Terms. If there is a conflict, the Engagement Agreement will take priority.</p>
+<h2>2. Website Use and Prohibited Activities</h2>
+<p>You may use the Website only for lawful purposes and in line with these Terms. You must not, and must not help anyone else to:</p>
+<ul>
+<li>use the Website in a way that could disable, overload, damage or disrupt it, or interfere with anyone else's use;</li>
+<li>try to gain unauthorised access to any part of the Website, another account, or any connected computer system or network;</li>
+<li>introduce viruses, malware, trojans or any other harmful material;</li>
+<li>use robots, spiders, scrapers or other automated tools to access, monitor, copy, extract or reproduce Website content, maps, imagery, data or materials without our prior written permission;</li>
+<li>copy, republish, frame, mirror, distribute or commercially exploit Website content, maps or materials without our prior written permission; or</li>
+<li>misrepresent your identity or affiliation or use the Website to send unauthorised advertising or promotional material.</li>
+</ul>
+<p>If we reasonably believe that someone has breached this clause, we may restrict, suspend or end their access to the Website. We may also pursue any legal remedies available to us, including an injunction, where Website content has been scraped or reused without permission.</p>
+<h2>3. Proposal, Quotation and Project-Scope Process</h2>
+<p>An enquiry does not create a binding engagement. After receiving an enquiry, we may send a written proposal or quotation describing the scope, deliverables, fees, timeline and key assumptions (the "Proposal"). An engagement becomes binding only when the Client accepts the Proposal in writing, including by email, or signs an Engagement Agreement, as applicable. A Proposal remains valid for the period stated in it. If no period is stated, it remains valid for thirty (30) days from its issue date.</p>
+<h2>4. Fees, Taxes, Payment Milestones and Late Payment</h2>
+<p>The fees for the Services will be stated in the relevant Proposal or Engagement Agreement. Unless expressly stated otherwise, fees do not include applicable taxes, including Goods and Services Tax (GST). The Client must pay all applicable taxes at the rate in force on the invoice date, in addition to the stated fees.</p>
+<p>Unless we agree otherwise in writing, payments are due according to the milestones stated in the Proposal or Engagement Agreement, such as an advance or mobilisation payment, interim milestone payments and final payment on delivery. Invoices must be paid within 10 days from the invoice date, unless the invoice or Engagement Agreement states a different period.</p>
+<p>Overdue amounts will carry interest at 18% per annum or the highest rate allowed by law, whichever is lower, from the due date until payment is received. If payment remains outstanding for 15 days after the due date, we may suspend work, withhold deliverables or end the engagement, without affecting any other rights or remedies available to us.</p>
+<h2>5. Cancellation, Refund and Termination</h2>
+<p>Either party may end an ongoing engagement by giving 7 days' written notice. The Client must still pay for all work completed, expenses incurred and non-cancellable third-party commitments, including data licences, up to the termination date. Payments for completed work and for third-party data, licences or resources already purchased for the Client are non-refundable. If the Client cancels an accepted Proposal before work begins, we may charge 12% to cover administrative and planning costs already incurred.</p>
+<p>We may end an engagement immediately by written notice if the Client fails to pay an amount when due, provides materially inaccurate project data, breaches these Terms, or acts unlawfully or fraudulently, or in a way that exposes the Firm to legal or regulatory risk.</p>
+<h2>6. Client Responsibility for Accurate Project Data</h2>
+<p>The Client must provide complete, accurate and timely information and materials reasonably needed for the Services, including data, GIS files, coordinates, maps, survey records, site access and approvals ("Client Data"). The Client confirms that it has all rights, licences and permissions needed to share the Client Data with us and allow us to use it for the engagement. We are not responsible for delays, errors or deficiencies in the deliverables caused by Client Data that is incomplete, inaccurate, outdated or unlawfully obtained.</p>
+<h2>7. Project Timelines</h2>
+<p>Any timeline in a Proposal or Engagement Agreement is an estimate. Delivery may depend on matters outside our control, including the timely receipt of Client Data and approvals, satellite revisit frequency, the availability of cloud-free imagery, weather, field-access permissions, ground-truthing requirements, and the Client's timely review and approval at each stage. If we expect a material delay, we will inform the Client and provide a revised timeline as soon as reasonably practical. We are not liable for delays caused by these factors.</p>
+<h2>8. Revisions and Out-of-Scope Changes</h2>
+<p>Unless the Proposal or Engagement Agreement states otherwise, the Client may request 3 rounds of revisions, provided the revisions stay within the agreed scope. Additional revisions, or changes to the scope, methodology, data sources, area of interest or deliverable format, will be treated as a change order. We will quote and charge for that work separately, and will begin only after both parties agree to it in writing.</p>
+<h2>9. Acceptance of Final Deliverables</h2>
+<p>The Client must review the final deliverables and report any deficiency in writing within 10 business days after delivery. If we do not receive such notice within that period, the deliverables will be treated as accepted. We will correct deficiencies within the agreed scope at no additional charge. A request caused by a later change in scope, requirements or Client Data will be handled as a change order under clause 8.</p>
+<h2>10. Ownership of Reports, Maps, Code, Models and Methodologies</h2>
+<p>Once all fees have been paid, the Client will own the final deliverables created specifically for the engagement, including project-specific reports, maps and datasets, for the purpose for which they were commissioned. We continue to own our pre-existing or independently developed methodologies, models, algorithms, scripts, code, templates, tools and know-how, together with any improvements or derivatives, even if they are used or developed during the engagement. Where any of these materials are embedded in a deliverable, the Client receives a non-exclusive, non-transferable licence to use them only for its own internal use in connection with the project. They may not be resold, sublicensed or used for competing engagements unless we agree otherwise in writing.</p>
+<h2>11. Third-Party Dataset Licensing</h2>
+<p>Our deliverables may use or be derived from third-party geospatial data, including Sentinel and Landsat imagery, data processed through Google Earth Engine, and other open or licensed datasets ("Third-Party Data"). The use of Third-Party Data and any related deliverable remain subject to the original provider's licence terms, attribution requirements and restrictions, such as the Copernicus/Sentinel Data Terms, the USGS/Landsat data policy and the Google Earth Engine Terms of Service. We cannot give the Client rights beyond those granted by the original provider. The Client is responsible for ensuring that its intended use complies with all applicable third-party terms.</p>
+<h2>12. Confidentiality</h2>
+<p>Each party must protect any non-public information received from the other in connection with an engagement, including Client Data, project locations, deliverables, pricing and business information ("Confidential Information"). Confidential Information may be shared only with employees, sub-consultants or professional advisers who need it and are bound by equivalent confidentiality duties; with the disclosing party's prior written consent; or when required by Applicable Law, a court order or a regulatory authority. This duty continues for 2 years after the engagement ends. Confidentiality obligations relating to sensitive Client Data or project locations continue indefinitely.</p>
+<h2>13. Regulated and Sensitive Geospatial Data</h2>
+<p>The Client understands that Indian law restricts the survey, mapping, collection and sharing of certain geospatial data, including information about defence installations, critical infrastructure, border areas and other regulated categories. These restrictions include the National Geospatial Policy, 2022, and related guidance from the Department of Science and Technology and other competent authorities. We will not survey, process or share regulated geospatial data unless all required approvals and legal requirements are met. The Client must not ask us to act otherwise and must tell us promptly if a project involves, or may reasonably involve, regulated geospatial data.</p>
+<h2>14. Remote-Sensing Limitations and Field Verification</h2>
+<p>Remote-sensing and GIS analysis has inherent limitations. Results may be affected by sensor resolution, cloud or atmospheric interference, gaps between satellite passes, modelling or classification uncertainty, and the accuracy of reference and ground-truth data. Desk-based and remote-sensing deliverables do not replace field investigation, ground surveys or physical verification. They should be verified in the field before being used for decisions with significant financial, safety, legal or regulatory consequences.</p>
+<h2>15. No Guarantee of Outcomes</h2>
+<p>We provide our analysis, modelling and advice with reasonable skill and care. However, we cannot guarantee the presence, quantity or quality of groundwater or any other natural resource; the approval of any licence, environmental clearance or permission by an authority; or the commercial, financial or investment result of a project or decision based on our deliverables. These outcomes depend on matters outside our control, including natural conditions, regulatory decisions and market conditions.</p>
+<h2>16. Client Responsibility for Final Decisions</h2>
+<p>The Client is responsible for all final engineering, legal, construction, land-acquisition, investment and regulatory-compliance decisions made using our deliverables. Before acting, the Client must obtain independent advice from suitably licensed engineers, architects, advocates, statutory auditors or other professionals where appropriate. Our deliverables support decision-making; they are not engineering designs, legal advice or a replacement for any statutory certification required from a licensed professional.</p>
+<div class="legal-callout">
+<p><strong>Important Disclaimer</strong><br/>Our geospatial analyses and suitability assessments support decision-making. They are based on the data, methods, resolution and assumptions described in the relevant project report. They do not replace field investigation, statutory approval, engineering design or advice from a licensed professional where required.</p>
+</div>
+<h2>17. Warranty Disclaimer and Limitation of Liability</h2>
+<p>Except where these Terms or an Engagement Agreement expressly state otherwise, the Services and deliverables are provided on an "as is" basis. To the fullest extent allowed by Applicable Law, we exclude all express and implied warranties, including warranties of merchantability, fitness for a particular purpose and non-infringement.</p>
+<p>To the fullest extent allowed by Applicable Law: (a) our total liability arising from an engagement, whether in contract, tort (including negligence), statute or otherwise, will not exceed the fees actually paid by the Client for the specific Services that gave rise to the claim; and (b) we will not be liable for indirect, incidental, consequential, special or punitive losses, or for loss of profit, revenue, business, data or goodwill, even if we were told that such loss was possible. Nothing in these Terms excludes or limits liability where the law does not allow it, including liability for death or personal injury caused by negligence, or for fraud.</p>
+<h2>18. Indemnity</h2>
+<p>The Client will indemnify and protect us against claims, losses, liabilities, damages, costs and reasonable legal fees arising from: (a) Client Data or Third-Party Data selected or supplied by the Client that is inaccurate, unlawfully obtained, unlicensed or provided in breach of another person's rights; (b) the Client's use of deliverables in breach of these Terms, an Engagement Agreement or applicable Third-Party Data licence terms; or (c) the Client's breach of clause 13 on Regulated and Sensitive Geospatial Data.</p>
+<h2>19. Force Majeure</h2>
+<p>Neither party is responsible for a failure or delay caused by events beyond its reasonable control. These may include natural disasters, pandemics, war, civil unrest, government action, satellite or data-provider outages, internet or telecommunications failures, or a third party's refusal of field access (a "Force Majeure Event"). The affected party must notify the other promptly and resume performance as soon as reasonably practical. If the event continues for more than 60 days, either party may end the affected engagement by written notice. The Client must still pay for work completed up to the termination date.</p>
+<h2>20. Governing Law, Dispute Resolution and Jurisdiction</h2>
+<p>These Terms and any dispute connected with them, including a non-contractual dispute, are governed by the laws of India. The parties will first try to resolve the dispute through good-faith negotiation within 60 days after written notice. If they cannot resolve it, the dispute will be finally settled by arbitration under the Arbitration and Conciliation Act, 1996. The arbitration will be seated in Mumbai, Maharashtra, conducted in English, and heard by one arbitrator jointly appointed by the parties. Subject to the arbitration requirement, the courts at Mumbai, Maharashtra, will have exclusive jurisdiction over matters that cannot be referred to arbitration and supervisory jurisdiction over the arbitration.</p>
+<h2>21. Updates, Severability, Waiver, Assignment and Entire Agreement</h2>
+<h3>21.1 Updates</h3>
+<p>We may update these Terms from time to time. The "Last updated" date shows when the current version took effect. Updated Terms apply once they are posted on the Website and will govern engagements entered into after that date. An engagement already in progress will continue under the Terms that applied when the relevant Proposal was accepted, unless the parties agree otherwise in writing.</p>
+<h3>21.2 Severability</h3>
+<p>If a court or arbitral tribunal finds any part of these Terms invalid, illegal or unenforceable, that part will be removed and the rest of the Terms will remain in effect.</p>
+<h3>21.3 Waiver</h3>
+<p>A party does not waive a right by delaying or failing to exercise it. Exercising a right once, or only in part, does not prevent that party from exercising it again or using any other right.</p>
+<h3>21.4 Assignment</h3>
+<p>The Client may not assign, transfer or subcontract its rights or obligations under these Terms without our prior written consent. We may assign or subcontract some or all of our rights or obligations to an affiliate, successor or sub-consultant involved in delivering the Services, provided that any sub-consultant is bound by confidentiality obligations at least as protective as these Terms.</p>
+<h3>21.5 Entire Agreement</h3>
+<p>These Terms, the applicable Proposal or Engagement Agreement, and our Privacy Policy form the entire agreement between the parties on their subject matter. They replace all earlier oral or written discussions, representations and agreements, except in the case of fraudulent misrepresentation.</p>
+<h2>22. Contact Information</h2>
+<p>If you have any questions about these Terms, please contact us using the details below:</p>
+<dl class="legal-kv">
+<div><dt>Legal / Trading Name</dt><dd>"Vasu Terra Solutions"</dd></div>
+<div><dt>Business Address</dt><dd>12A, Gokuldham Apartments, Kashiko Nagar, Krushnaban Colony, CIDCO, Nashik - 422009</dd></div>
+<div><dt>Business E-mail</dt><dd><a href="mailto:vasuterrasolutions@gmail.com">vasuterrasolutions@gmail.com</a></dd></div>
+<div><dt>Telephone</dt><dd>+91 81494 23884</dd></div>
+</dl>
+<p class="legal-updated mono">Last updated: <span class="legal-placeholder">18/08/2026</span></p>
+</div>
+</div>
+</div><script>
+const header=document.getElementById('site-header');window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>12),{passive:true});
+const menuToggle=document.getElementById('menuToggle'),mobileNav=document.getElementById('mobileNav');menuToggle.addEventListener('click',()=>{let open=mobileNav.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open))});mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')}));
+function openLegal(id){const el=document.getElementById(id);if(!el)return;el.classList.add('open');el.querySelector('.legal-overlay-scroll').scrollTop=0;document.body.style.overflow='hidden'}
+function closeLegal(id){const el=document.getElementById(id);if(!el)return;el.classList.remove('open');document.body.style.overflow=''}
+const form=document.getElementById('consultationForm'),submitBtn=document.getElementById('consultationSubmitBtn');if(form){form.addEventListener('submit',()=>{submitBtn.textContent='Sending…';submitBtn.disabled=true})}
+const year=document.getElementById('yearNow');if(year)year.textContent=new Date().getFullYear();
+</script></body></html>
