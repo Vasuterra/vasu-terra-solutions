@@ -286,11 +286,14 @@ h1.hero-headline{
 .service-cat.open .service-cat-body{max-height:600px;}
 .service-tags{display:flex;flex-wrap:wrap;gap:10px;padding:6px 6px 34px 66px;}
 @media (max-width:640px){.service-tags{padding-left:6px;}}
-.service-tags span{
+.service-tags span,.service-tags a{
   font-size:13.5px;color:var(--ink-soft);
   padding:9px 16px;border:1px solid var(--line-strong);border-radius:20px;
   background:var(--panel);
 }
+
+.service-tags a{display:inline-block;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:4px;transition:color .2s ease, border-color .2s ease;}
+.service-tags a:hover,.service-tags a:focus-visible{color:var(--blue);border-color:var(--gold);}
 
 /* ============ INDUSTRIES ============ */
 .industry-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-strong);border:1px solid var(--line-strong);}
@@ -625,7 +628,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </button>
         <div class="service-cat-body">
           <div class="service-tags">
-            <span>Groundwater Potential Zone Mapping</span><span>Aquifer Assessment</span><span>Artificial Recharge Planning</span><span>Watershed Delineation</span><span>Watershed Prioritization</span><span>Hydrological Modelling</span><span>River Basin Analysis</span><span>Runoff Analysis</span><span>Water Resource Planning</span>
+            <a href="groundwater-potential-zone-mapping.html" aria-label="Explore Groundwater Potential Zone Mapping services">Groundwater Potential Zone Mapping &#8599;</a><span>Aquifer Assessment</span><span>Artificial Recharge Planning</span><span>Watershed Delineation</span><span>Watershed Prioritization</span><span>Hydrological Modelling</span><span>River Basin Analysis</span><span>Runoff Analysis</span><span>Water Resource Planning</span>
           </div>
         </div>
       </div>
@@ -638,7 +641,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </button>
         <div class="service-cat-body">
           <div class="service-tags">
-            <span>Land Use Land Cover (LULC) Mapping</span><span>Satellite Image Processing</span><span>Change Detection Analysis</span><span>DEM Processing</span><span>Slope Analysis</span><span>Contour Mapping</span><span>Lineament Mapping</span><span>Drainage Density Analysis</span><span>Morphometric Analysis</span><span>Terrain Analysis</span><span>Spatial Database Development</span><span>Web GIS Solutions</span>
+            <a href="land-use-land-cover-mapping.html" aria-label="Explore Land Use Land Cover (LULC) Mapping services">Land Use Land Cover (LULC) Mapping &#8599;</a><span>Satellite Image Processing</span><span>Change Detection Analysis</span><span>DEM Processing</span><span>Slope Analysis</span><span>Contour Mapping</span><span>Lineament Mapping</span><a href="drainage-density-analysis.html" aria-label="Explore Drainage Density Analysis services">Drainage Density Analysis &#8599;</a><span>Morphometric Analysis</span><span>Terrain Analysis</span><span>Spatial Database Development</span><span>Web GIS Solutions</span>
           </div>
         </div>
       </div>
@@ -651,7 +654,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         </button>
         <div class="service-cat-body">
           <div class="service-tags">
-            <span>Environmental Impact Assessment Support</span><span>Flood Hazard Mapping</span><span>Drought Assessment</span><span>Climate Risk Assessment</span><span>Carbon Stock Assessment</span><span>Wetland Mapping</span><span>Forest Monitoring</span><span>Land Capability Assessment</span><span>Environmental Monitoring</span>
+            <span>Environmental Impact Assessment Support</span><a href="flood-risk-management-services.html" aria-label="Explore Flood Hazard Mapping services">Flood Hazard Mapping &#8599;</a><span>Drought Assessment</span><span>Climate Risk Assessment</span><span>Carbon Stock Assessment</span><span>Wetland Mapping</span><span>Forest Monitoring</span><span>Land Capability Assessment</span><span>Environmental Monitoring</span>
           </div>
         </div>
       </div>
